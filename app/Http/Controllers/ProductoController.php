@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Producto;
 
 class ProductoController extends Controller
 {
@@ -15,7 +16,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        return view('producto.index');
     }
 
     /**
@@ -25,7 +26,9 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        //listado de comercio
+        //catergorias
+        return view('producto.formulario.create',compact('catergorias','comercio'));
     }
 
     /**
@@ -36,7 +39,9 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // dd($request);entro
+
+        return redirect('producto');
     }
 
     /**
@@ -58,7 +63,8 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+       // $producto=Producto::find($id);
+         //return view('producto.formulario.edit',compact('catergorias','comercio','producto'));
     }
 
     /**
@@ -70,7 +76,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return redirect('producto');
     }
 
     /**
