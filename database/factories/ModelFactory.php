@@ -19,3 +19,27 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+$factory->define(App\Rubro::class, function (Faker\Generator $faker) {
+    return [
+        'nombre' => $faker->unique()->jobTitle
+    ];
+});
+
+
+
+$factory->define(App\Comercio::class, function (Faker\Generator $faker) {
+	 $rubro_id = App\Rubro::all()->lists('id'); 
+
+	 $rubro_id = $faker
+                      ->randomElement($rubro_id->toArray());
+
+    return [
+        'nombre' => $faker->unique()->company,
+        'rubro_id' => $rubro_id,
+        'direccion_calle'=>$faker->streetAddress,
+        'direccion_esquina'=>$faker->streetAddress,
+        'direccion_numero'=>$faker->streetAddress,
+    ];
+});
