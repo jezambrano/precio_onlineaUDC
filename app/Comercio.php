@@ -20,17 +20,17 @@ class Comercio extends Model
 
     public function rubro()
     {
-    	return $this->belongsTo('APP\Rubro');
+    	return $this->belongsTo('App\Rubro');
     } 
 
     public function provincia()
     {
-    	return $this->belongsTo('APP\Provincia');
+    	return $this->belongsTo('App\Provincia');
     } 
 
     public function localidad()
     {
-    	return $this->belongsTo('APP\Localidad');
+    	return $this->belongsTo('App\Localidad');
     } 
 }
 
