@@ -18,6 +18,13 @@ class CreateProductosTable extends Migration
             $table
                 ->string('nombre');
             $table
+                ->string('descripcion');
+            $table
+                ->double('precio');
+            $table
+                ->string('codigo_barra');    
+
+            $table
                 ->timestamps();
         });
     }
