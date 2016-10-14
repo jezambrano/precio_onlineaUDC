@@ -2,8 +2,10 @@
 
 @section('content')
 hola
-	@foreach ($comercios as $comercio)
-	    <p>	{{ $comercio->nombre }} </p>
-	@endforeach
 
+	@if(isset($comercios))
+		@foreach ($comercios as $comercio)
+	    	<p>	{{ $comercio->nombre }} </p>
+		@endforeach
+	@endif
 @endsection

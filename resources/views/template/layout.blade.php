@@ -3,8 +3,10 @@
 <head>
 	 <title> @yield('title')</title>
 	 {!! Html::style('./assets/css/bootstrap.css') !!}
+
 </head>
 <body>
+	@include('template.errores')
 	 @yield('content')
 	 @yield('scripts')
 	 {!! Html::script('./assets/js/jquery.min.js') !!}

@@ -39,22 +39,10 @@ class ComercioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComercioRequest $request)
     {
 
-		$this->validate($request, [
-		    'nomber' => 'required|unique:comercios|max:30',
-		    'direccion_calle' => 'required|unique:comercios|max:225',
-			'direccion_numero' => 'required|unique:comercios|max:30', 
-			'telefono' => 'required|unique:comercios|max:30',
-			'horario_atencion' => 'required|unique:comercios|max:30',
-
-		]);
-		if ($validator->fails()) {
-            return redirect('comercio/formulario/create')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+		Comercio::create($request->all());
 
         return redirect('comercio');
     }
@@ -79,7 +67,7 @@ class ComercioController extends Controller
     public function edit($id)
     {
         $comercio=Comercio::find($id);
-        return view('producto.formulario.edit',compact('comercio'));
+        return view('comercio.formulario.edit',compact('comercio'));
     }
 
     /**
@@ -89,7 +77,7 @@ class ComercioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ComercioRequest $request, $id)
     {
         return redirect('comercio');
     }

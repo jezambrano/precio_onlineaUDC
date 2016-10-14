@@ -1,5 +1,3 @@
-
-
 {!! Form::label('nombre','nombre del comercio (*) ',['class'=> "form-label-cms-3" ]) !!}
 
 
