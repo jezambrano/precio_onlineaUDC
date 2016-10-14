@@ -27,7 +27,7 @@ class ProductoController extends Controller
     public function create()
     {
         //listado de comercio
-        //catergorias
+        //catergorias::all();
         return view('producto.formulario.create',compact('catergorias','comercio'));
     }
 
@@ -40,7 +40,7 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
        // dd($request);entro
-
+        //Producto::create($resquest->all());
         return redirect('producto');
     }
 
