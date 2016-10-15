@@ -1,11 +1,14 @@
 @extends('template.layout')
 
 @section('content')
-hola
 
 	@if(isset($comercios))
 		@foreach ($comercios as $comercio)
-	    	<p>	{{ $comercio->nombre }} </p>
+	    	<p>	{{ $comercio->nombre }} | 
+	    		{{ $comercio->rubro->nombre }} | 
+	    		{{ $comercio->localidad->nombre }} |
+	    		{{ $comercio->horario_atencion }}
+	    	</p>
 		@endforeach
 	@endif
 @endsection

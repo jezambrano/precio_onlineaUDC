@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Comercio;
+use App\Rubro;
+use App\Provincia;
 
 class ComercioController extends Controller
 {
@@ -27,10 +29,9 @@ class ComercioController extends Controller
      */
     public function create()
     {
-        //listado de comercio
-
-        //catergorias
-        return view('comercio.formulario.create');
+        $rubros = Rubro::all();
+        $provincias = Provincia::all();
+        return view('comercio.formulario.create',compact('rubros','provincias'));
     }
 
     /**

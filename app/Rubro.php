@@ -10,6 +10,8 @@ class Rubro extends Model
 
 	protected $fillable = ['nombre'];
 
-	
-
+    public function comercios()
+    {
+    	return $this->hasMany('App\Comercio');
+    } 
 }
