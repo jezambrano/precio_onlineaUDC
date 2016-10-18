@@ -3,11 +3,11 @@
 @section('content')
 
 	
-	{!! Form::model($comercio,['route'=>['clientes.update',$comercio->id],'id'=>'comercio']) !!}
+	{{ Form::model($comercio,array('route' => 'comercio.update', $comercio->id) }}
 
             @include('comercio.partials.form')
             
-    {!! Form::close() !!}
+    {{Form::close()}}
 
 
 

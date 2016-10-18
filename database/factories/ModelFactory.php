@@ -26,14 +26,21 @@ $factory->define(App\Rubro::class, function (Faker\Generator $faker) {
         'nombre' => $faker->unique()->jobTitle
     ];
 });
+$factory->define(App\Localidad::class, function (Faker\Generator $faker) {
+    return [
+        'nombre' => $faker->unique()->country
+    ];
+});
 
 
 
 $factory->define(App\Comercio::class, function (Faker\Generator $faker) {
 	 $rubro_id = App\Rubro::all()->lists('id'); 
-
+     $localidad_id = App\Localidad::all()->lists('id'); 
 	 $rubro_id = $faker
                       ->randomElement($rubro_id->toArray());
+     $localidad_id = $faker
+                      ->randomElement($localidad_id->toArray());
 
     return [
         'nombre' => $faker->unique()->company,
@@ -41,5 +48,7 @@ $factory->define(App\Comercio::class, function (Faker\Generator $faker) {
         'direccion_calle'=>$faker->streetAddress,
         'direccion_esquina'=>$faker->streetAddress,
         'direccion_numero'=>$faker->streetAddress,
+        'localidad_id'=>$localidad_id,
+        'horario'=>$faker->time($format = 'H:i:s A', $max = 'now').' a '.$faker->time($format = 'H:i:s A', $max = 'now')
     ];
 });

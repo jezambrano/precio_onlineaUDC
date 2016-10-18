@@ -4,23 +4,16 @@
 </div>
 <div class="form-group">
 	{!! Form::label('rubro_id','Rubro al que pertenece el comercio(*)',['class=> "form-label"'])!!}
-	{!! Form::select('rubro', array();,'required'}
+	{!! Form::select('rubros', $rubros)}
 </div>
-<div class="form-group">
-	{!! Form::label('provincia_id','Provincia al que pertenece el comercio(*)',['class=> "form-label"'])!!}
-	{!! Form::select('provincia', array();'required'}
-</div>
-<div class="form-group">
-	{!! Form::label('localidad_id','Localidad al que pertenece el comercio(*)',['class=> "form-label"'])}
-	{!! Form::select('localidad', array();'required'}
-</div>
+
 <div class="form-group">
 	{!! Form::label('direccion_calle','Direccion del Comercio (*) ',['class'=> "form-label-cms-3" ]) !!}
 	{!! Form::text('direccion_calle',(isset($comercio)? $comercio->direccion_calle: null),['class'=>'form-control','id' => 'direccion_calle','required']) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('direccion_esquina','Esquina(*)',['class'=>"form-label-cms-3"])!!}
-	{!! Form::checkbox('direccion_esquina', '(isset($comercio)? $comercio->direccion_esquina: null),['class'=>'form-control','id' => 'direccion_esquina'', true);}
+	{!! Form::checkbox('direccion_esquina', '(isset($comercio)? $comercio->direccion_esquina: null),['class'=>'form-control','id' => 'direccion_esquina'', true)}
 </div>
 <div class="form-group">
 	{!! Form::label('telefeno','telefono del comercio (*) ',['class'=> "form-label-cms-3" ]) !!}
