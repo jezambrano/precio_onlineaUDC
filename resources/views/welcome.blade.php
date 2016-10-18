@@ -1,45 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+@extends('layout')
+@section('content')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+<div> <h1> Bienvenido <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h1> </div>
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+<a class="btn btn-info" href="cargar_producto"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Cargar Producto</a>
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
-        </div>
-    </body>
-</html>
+@endsection

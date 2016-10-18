@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html>
+</head>
 <head>
-	 <title> @yield('title')</title>
-	 {!! Html::style('./assets/css/bootstrap.css') !!}
+	<title> @yield('title')</title>
+	{!! Html::style('assets/css/bootstrap.css') !!}
+        @yield('style')
+
 
 </head>
 <body>
 	@include('template.errores')
-	 @yield('content')
-	 @yield('scripts')
-	 {!! Html::script('./assets/js/jquery.min.js') !!}
-	 {!! Html::script('./assets/js/bootstrap.min.js') !!}
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @yield('content')
+                    
+         
+         
+                </div>
+
+            </div>
+
+        </div><!-- /.container -->
+	
+        
+        @yield('scripts')
+        
+        {!! Html::script('assets/js/jquery.min.js') !!}
+	{!! Html::script('assets/js/bootstrap.min.js') !!}
 	 
 
 
