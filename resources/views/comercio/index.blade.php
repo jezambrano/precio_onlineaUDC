@@ -23,6 +23,15 @@
                         <td><a href="{{route('comercio.edit',$comercio->id)}}">Editar</a></td>
                         <td><a href="{{route('comercio.destroy',$comercio->id)}}">Borrar</a></td>
                         <td><a href="{{route('comercio.show',$comercio->id)}}">Ver</a></td>
+			
+			<td style="text-align: center;"> 
+   {{ Form::open(array('url' => 'comercio/'.$comercio->id)) }}
+      {{ Form::hidden("_method", "DELETE") }}
+      {{ Form::submit("Eliminar") }}
+   {{ Form::close() }}
+</td>
+			
+			
     	    		</tr>
             		@endforeach
     	        </table>
