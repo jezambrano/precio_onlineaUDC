@@ -91,6 +91,8 @@ class ComercioController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $comercio = Comercio::find($id);
+        $comercio->delete();
+        return redirect('comercio');
     }
 }
