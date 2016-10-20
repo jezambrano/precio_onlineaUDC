@@ -1,7 +1,10 @@
-@extends('template.master')
+@extends('template.layout')
 
 @section('content')
 	
+    <a href="{{ route('comercio.create') }}" class="btn btn-success">Nuevo</a>
+    <br><br>
+
 	@if(isset($comercios))
         <div class="form-group">
             <h1>Listado de Comercios </h1>
@@ -24,40 +27,31 @@
   
              @foreach ($comercios as $comercio)
 
-        <tr class="info">
+        <tr>
             <td>{{ $comercio->id }}</td>
             <td>{{ $comercio->nombre }}</td>
             <td>{{ $comercio->rubro->nombre }}</td>
+	    <td>{{ $comercio->localidad->nombre }}</td>
             <td>{{ $comercio->horario}}</td>
             <td>
-                
-        {{ Form::open(array('url' => 'comercio/'.$comercio->id)) }}
-        {{ Form::hidden("_method", "show") }}
-        {{ Form::submit("ver") }}
-        {{ Form::close() }}
-
+                <a href='{{route('comercio.show',$comercio->id)}}' class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
+       
 
             </td>
-            <td class="warning">
-                
-        {{ Form::open(array('url' => 'comercio/'.$comercio->id)) }}
-        {{ Form::hidden("_method", "show") }}
-        {{ Form::submit("Modificar") }}
-        {{ Form::close() }}
+            <td>
+		<a href='{{route('comercio.edit',$comercio->id)}}' class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
 
 
 
 
             </td>
             
-            <td class="danger">
-                
-        {{ Form::open(array('url' => 'comercio/'.$comercio->id)) }}
-        {{ Form::hidden("_method", "DELETE") }}
-        {{ Form::submit("Eliminar") }}
-        {{ Form::close() }}
-
-
+            <td >
+		
+		{{ Form::model($comercio, ["method" => "delete", "route" => ["comercio.destroy", $comercio->id], "class" =>"form-inline form-delete"]) }}
+		{{ Form::button("<span class='glyphicon glyphicon-trash'></span>", array("type" => "submit", "class" => "btn btn-danger delete")) }}
+		{{ Form::close()}}
+		
 
             </td>
         </tr>

@@ -22,3 +22,7 @@ Route::get('cargar_producto', function () {
 Route::resource('producto','ProductoController');
 
 Route::resource('comercio','ComercioController');
+
+Route::resource('precio','CategoriaController');
+
+Route::resource('precio','PrecioController');

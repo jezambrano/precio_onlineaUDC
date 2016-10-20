@@ -3,7 +3,7 @@
 @section('content')
 
 	
-	{!! Form::open(['url' => 'comercio', 'id'=>'comercio']) !!}
+    {!! Form::open(['url' => 'comercio', 'id'=>'comercio']) !!}
 
             @include('comercio.partials.form')
             
@@ -16,7 +16,7 @@
 @section('script')
 
 <script type="text/javascript">
-	public function rubros()
+/*	public function rubros()
 	{
     $rubros = ['rubros' => DB::table('rubros')->lists('nombre', 'id')];
  
@@ -33,7 +33,7 @@
     $localidades = ['localidades' => DB::table('localidades')->lists('nombre', 'id')];
  
     return View::make('comercio.create', $localidades);
-	}
+	}*/
 
 
 </script>

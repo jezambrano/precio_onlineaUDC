@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Comercio;
 use App\Rubro;
-use App\Provincia;
+use App\Localidad;
 
 class ComercioController extends Controller
 {
@@ -29,9 +29,9 @@ class ComercioController extends Controller
      */
     public function create()
     {
-        $rubros = Rubro::all();
-        $provincias = Provincia::all();
-        return view('comercio.formulario.create',compact('rubros','provincias'));
+        $rubros = Rubro::all()->lists('nombre','id');
+        $localidad = Localidad::all()->lists('nombre','id');	
+        return view('comercio.formulario.create',compact('rubros','localidad'));
     }
 
     /**
@@ -42,8 +42,7 @@ class ComercioController extends Controller
      */
     public function store(ComercioRequest $request)
     {
-
-		Comercio::create($request->all());
+	Comercio::create($request->all());
 
         return redirect('comercio');
     }
@@ -56,7 +55,12 @@ class ComercioController extends Controller
      */
     public function show($id)
     {
-        //
+	
+        $rubros = Rubro::all()->lists('nombre','id');
+        $localidad = Localidad::all()->lists('nombre','id');
+        $comercio=Comercio::find($id);
+	$ver=true;
+        return view('comercio.formulario.show',compact('comercio','rubros','localidad','ver'));
     }
 
     /**
@@ -67,8 +71,10 @@ class ComercioController extends Controller
      */
     public function edit($id)
     {
+	$rubros = Rubro::all()->lists('nombre','id');
+        $localidad = Localidad::all()->lists('nombre','id');
         $comercio=Comercio::find($id);
-        return view('comercio.formulario.edit',compact('comercio'));
+        return view('comercio.formulario.edit',compact('comercio','rubros','localidad'));
     }
 
     /**

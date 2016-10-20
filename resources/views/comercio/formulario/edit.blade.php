@@ -2,8 +2,7 @@
 
 @section('content')
 
-	
-	{{ Form::model($comercio,array('route' => 'comercio.update', $comercio->id) }}
+    {{ Form::model($comercio,[ 'method' => 'PUT','route' => ['comercio.update',$comercio->id] ] ) }}
 
             @include('comercio.partials.form')
             
