@@ -19,7 +19,7 @@ class ComercioController extends Controller
      */
     public function index()
     {
-    	$comercios = Comercio::activos();
+    	$comercios = Comercio::activos()->paginate(5);
         return view('comercio.index',compact('comercios'));
     }
 

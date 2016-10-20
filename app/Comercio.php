@@ -35,7 +35,7 @@ class Comercio extends Model
     } 
     
     public function  scopeActivos($query){
-	return $query->where('activo',true)->get();
+	return $query->where('activo',true);
     }
     
     public function  scopeBaja(){

@@ -22,6 +22,17 @@
 
         </tr>
     </thead>
+    <tfoot>
+	<tr>
+	    <td colspan="2">
+		Total de comercios
+	    </td>
+	    <td>
+		{{ $comercios-> total()}}
+	    </td>
+		
+	</tr>
+    </tfoot>
 
     <tbody>
   
@@ -59,9 +70,7 @@
     </tbody>
 </table>
 
-
-    	        </table>
-            </div>
+           {{ $comercios->render() }}
         </div>
 	@endif            
 @endsection
