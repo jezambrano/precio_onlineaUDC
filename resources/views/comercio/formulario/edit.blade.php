@@ -1,5 +1,5 @@
 @extends('template.layout')
-
+@section('title',"Editar Comercio")
 @section('content')
 
     {{ Form::model($comercio,[ 'method' => 'PUT','route' => ['comercio.update',$comercio->id] ] ) }}

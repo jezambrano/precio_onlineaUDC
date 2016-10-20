@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Comercio;
 use App\Rubro;
 use App\Localidad;
+use App\Http\Requests\ComercioResquest;
 
 class ComercioController extends Controller
 {
@@ -18,7 +19,7 @@ class ComercioController extends Controller
      */
     public function index()
     {
-    	$comercios = Comercio::all();
+    	$comercios = Comercio::activos();
         return view('comercio.index',compact('comercios'));
     }
 
@@ -40,8 +41,9 @@ class ComercioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ComercioRequest $request)
+    public function store(Request $request)
     {
+	dd($request);
 	Comercio::create($request->all());
 
         return redirect('comercio');
@@ -84,8 +86,9 @@ class ComercioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ComercioRequest $request, $id)
+    public function update(Request $request, $id)
     {
+	Comercio::find($id)->update($request->all());
         return redirect('comercio');
     }
 
@@ -97,8 +100,9 @@ class ComercioController extends Controller
      */
     public function destroy($id)
     {
-         $comercio = Comercio::find($id);
-        $comercio->delete();
+	//baja logica
+        $comercio = Comercio::find($id);
+        $comercio->baja();
         return redirect('comercio');
     }
 }

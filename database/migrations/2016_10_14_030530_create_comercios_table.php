@@ -49,6 +49,8 @@ class CreateComerciosTable extends Migration
                 ->foreign('localidad_id')
                 ->references('id')
                     ->on('localidades');
+	    $table  
+		->boolean('activo')->default(true);
 
             $table->timestamps();
         });

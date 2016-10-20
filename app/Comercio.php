@@ -33,5 +33,16 @@ class Comercio extends Model
     {
     	return $this->belongsTo('App\Localidad');
     } 
+    
+    public function  scopeActivos($query){
+	return $query->where('activo',true)->get();
+    }
+    
+    public function  scopeBaja(){
+	$this->activo=false;
+	$this->save();
+	
+    }
+    
 }
 

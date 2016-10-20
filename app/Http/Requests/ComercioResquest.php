@@ -34,16 +34,5 @@ class ComercioResquest extends Request
     }
 
 
-     public function messages()
-    {
-        return[
-        
-            'direccion_calle.unique' => 'la direccion de la calle esta en uso',
-            'direccion_numero.unique' => 'la direccion numero esta en uso',
-            'direccion_calle.max' => 'los caracteres de la direccion no puede superar a 225',
-          
-        ];
-        
-
-    }
+   
 }

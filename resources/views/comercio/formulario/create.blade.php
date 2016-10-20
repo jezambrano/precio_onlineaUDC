@@ -1,5 +1,5 @@
 @extends('template.layout')
-
+@section('title',"Nuevo Comercio")
 @section('content')
 
 	

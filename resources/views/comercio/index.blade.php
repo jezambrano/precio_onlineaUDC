@@ -1,5 +1,5 @@
 @extends('template.layout')
-
+@section('title',"Comercios Index")
 @section('content')
 	
     <a href="{{ route('comercio.create') }}" class="btn btn-success">Nuevo</a>
