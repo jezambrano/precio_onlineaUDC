@@ -52,3 +52,37 @@ $factory->define(App\Comercio::class, function (Faker\Generator $faker) {
         'horario'=>$faker->time($format = 'H:i:s A', $max = 'now').' a '.$faker->time($format = 'H:i:s A', $max = 'now')
     ];
 });
+
+
+
+$factory->define(App\Categoria_Producto::class, function (Faker\Generator $faker) {
+    return [
+        'nombre' => $faker->unique()->jobTitle
+    ];
+});
+
+
+
+$factory->define(App\Tipo_Producto::class, function (Faker\Generator $faker) {
+     $categoria = App\Categoria_Producto::all()->lists('id'); 
+     $categoria = $faker
+                      ->randomElement($categoria->toArray());
+
+    return [
+        'nombre' => $faker->unique()->jobTitle,
+        'categoria_producto_id' => $categoria
+    ];
+});
+
+
+
+$factory->define(App\Presentacion_Producto::class, function (Faker\Generator $faker) {
+     $tipo = App\Tipo_Producto::all()->lists('id'); 
+     $tipo = $faker
+                      ->randomElement($tipo->toArray());
+
+    return [
+        'nombre' => $faker->unique()->jobTitle,
+        'tipo_producto_id' => $tipo
+    ];
+});

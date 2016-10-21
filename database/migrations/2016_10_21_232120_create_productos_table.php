@@ -13,6 +13,8 @@ class CreateProductosTable extends Migration
     public function up()
     {
         Schema::create('productos', function (Blueprint $table) {
+            
+
             $table
                 ->increments('id');
             $table
@@ -23,6 +25,16 @@ class CreateProductosTable extends Migration
                 ->double('precio');
             $table
                 ->string('codigo_barra');    
+
+             //llave a tipo
+            $table
+                 ->integer('presentacion_producto_id')
+                 ->unsigned();
+
+            $table
+                ->foreign('presentacion_producto_id')
+                ->references('id')
+                    ->on('presentaciones_productos');
 
             $table
                 ->timestamps();

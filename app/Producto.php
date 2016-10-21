@@ -13,5 +13,13 @@ class Producto extends Model
 							'descripcion', 
 							'precio', 
 							'codigo_barra', 
-							'imagen'];
+							'imagen',
+							'presentacion_producto_id'
+
+							];
+
+	public function presentacion_producto()
+    {
+    	return $this->belongsTo('App\Presentacion_Producto');
+    }
 }

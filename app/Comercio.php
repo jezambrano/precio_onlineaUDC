@@ -33,8 +33,8 @@ class Comercio extends Model
     }
     
     public function  scopeBaja(){
-	$this->activo=false;
-	$this->save();
+		$this->activo=false;
+		$this->save();
 	
     }
     
