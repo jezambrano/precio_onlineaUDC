@@ -8,7 +8,7 @@ class Localidad extends Model
 {
 	protected $table = "localidades";//referencia a la tabla de db
 
-	protected $fillable = ['nombre'];
+	protected $fillable = ['id','nombre'];
 
     public function comercios()
     {

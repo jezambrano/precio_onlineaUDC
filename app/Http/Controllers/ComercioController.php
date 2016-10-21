@@ -43,10 +43,10 @@ class ComercioController extends Controller
      */
     public function store(Request $request)
     {
-	dd($request);
-	Comercio::create($request->all());
+	
+	   Comercio::create($request->all());
 
-        return redirect('comercio');
+       return redirect('comercio');
     }
 
     /**

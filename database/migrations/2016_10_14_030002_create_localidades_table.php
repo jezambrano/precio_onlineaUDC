@@ -17,15 +17,6 @@ class CreateLocalidadesTable extends Migration
                 ->increments('id');
             $table
                 ->string('nombre', 30);
-            $table
-                ->integer('provincia_id')
-                ->unsigned();
-
-            $table
-                ->foreign('provincia_id')
-                ->references('id')
-                    ->on('provincias');
-
                     
             $table
                 ->timestamps();

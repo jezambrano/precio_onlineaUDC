@@ -21,9 +21,6 @@ class CreateComerciosTable extends Migration
                 ->integer('rubro_id')
                 ->unsigned();
             $table
-                ->integer('provincia_id')
-                ->unsigned();
-            $table
                 ->integer('localidad_id')
                  ->unsigned();
             $table
@@ -41,10 +38,6 @@ class CreateComerciosTable extends Migration
                 ->foreign('rubro_id')
                 ->references('id')
                     ->on('rubros');
-            $table
-                ->foreign('provincia_id')
-                ->references('id')
-                    ->on('provincias');
             $table
                 ->foreign('localidad_id')
                 ->references('id')

@@ -11,7 +11,6 @@ class Comercio extends Model
 	protected $fillable = [
                             'nombre', 
 							'rubro_id', 
-							'provincia_id', 
 							'localidad_id', 
 							'direccion_calle', 
 							'direccion_esquina', 
@@ -22,11 +21,6 @@ class Comercio extends Model
     public function rubro()
     {
     	return $this->belongsTo('App\Rubro');
-    } 
-
-    public function provincia()
-    {
-    	return $this->belongsTo('App\Provincia');
     } 
 
     public function localidad()
