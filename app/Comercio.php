@@ -29,12 +29,12 @@ class Comercio extends Model
     } 
     
     public function  scopeActivos($query){
-	return $query->where('activo',true);
+		return $query->where('activo',true);
     }
     
     public function  scopeBaja(){
-	$this->activo=false;
-	$this->save();
+		$this->activo=false;
+		$this->save();
 	
     }
     

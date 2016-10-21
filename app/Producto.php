@@ -14,4 +14,6 @@ class Producto extends Model
 							'precio', 
 							'codigo_barra', 
 							'imagen'];
+
 }
+

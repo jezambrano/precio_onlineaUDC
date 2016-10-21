@@ -43,3 +43,12 @@
     {!! Form::file('imagen',(isset($producto)? $producto->imagen: null),['class'=>'form-control','id' => 'imagen', 'required'=>'required']) !!}
 
 </div>
+
+@if(!(isset($ver)))
+    {!! Form::submit('Enviar',['class'=> "btn btn-default" ]) !!}
+   @else
+   <a href="{{route('producto.edit',$producto->id)}}" class="btn btn-warning ">Editar</a>
+@endif
+
+      <a href="{{ route('producto.index') }}" class="btn btn-danger">Cancelar</a>
+    

@@ -24,7 +24,7 @@
     
     <div  class="form-group row">
 
-	<a class="btn btn-info" href="productos"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Productos</a>
+	<a class="btn btn-info" href="producto"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Productos</a>
 
     </div>
     

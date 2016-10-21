@@ -61,7 +61,7 @@ class ComercioController extends Controller
         $rubros = Rubro::all()->lists('nombre','id');
         $localidad = Localidad::all()->lists('nombre','id');
         $comercio=Comercio::find($id);
-	$ver=true;
+	    $ver=true;
         return view('comercio.formulario.show',compact('comercio','rubros','localidad','ver'));
     }
 
@@ -73,7 +73,7 @@ class ComercioController extends Controller
      */
     public function edit($id)
     {
-	$rubros = Rubro::all()->lists('nombre','id');
+	    $rubros = Rubro::all()->lists('nombre','id');
         $localidad = Localidad::all()->lists('nombre','id');
         $comercio=Comercio::find($id);
         return view('comercio.formulario.edit',compact('comercio','rubros','localidad'));

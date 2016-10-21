@@ -1,11 +1,10 @@
 @extends('template.layout')
 @section('title',"Producto Index")
 @section('content')
-    
     <a href="{{ route('producto.create') }}" class="btn btn-success">Nuevo</a>
     <br><br>
 
-    @if(isset($comercios))
+    @if(isset($productos))
         <div class="form-group">
             <h1>Listado de Productos </h1>
             <br>
@@ -28,7 +27,7 @@
         Total de Productos
         </td>
         <td>
-        {{ $producto-> total()}}
+        {{ $productos-> total()}}
         </td>
         
     </tr>
@@ -36,7 +35,7 @@
 
     <tbody>
   
-             @foreach ($producto as $producto)
+             @foreach ($productos as $producto)
 
         <tr>
             <td>{{ $producto->id }}</td>
@@ -70,7 +69,7 @@
     </tbody>
 </table>
 
-           {{ $producto->render() }}
+           {{ $productos->render() }}
         </div>
     @endif            
 @endsection

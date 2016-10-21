@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Producto;
+use App\Comercio;
 
 class ProductoController extends Controller
 {
@@ -16,7 +17,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return view('producto.index');
+        $productos = Producto::paginate(5);
+        return view('producto.index',compact('productos'));
     }
 
     /**
@@ -27,8 +29,9 @@ class ProductoController extends Controller
     public function create()
     {
         //listado de comercio
-        //catergorias::all();
-        return view('producto.formulario.create',compact('catergorias','comercio'));
+        $comercios = Comercio::all()->lists('nombre','id');
+        //$catergorias= Categoria::all();
+        return view('producto.formulario.create',compact('comercios')); //add categorias
     }
 
     /**
@@ -39,8 +42,8 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request);entro
-        //Producto::create($resquest->all());
+
+        Producto::create($resquest->all());
         return redirect('producto');
     }
 
@@ -52,7 +55,9 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        //
+        $comercio=Comercio::find($id);
+        $ver=true;
+        return view('producto.formulario.show',compact('comercio','ver'));
     }
 
     /**
@@ -63,6 +68,8 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
+        $comercio=Comercio::find($id);
+        return view('comercio.formulario.edit',compact('comercio'));
        // $producto=Producto::find($id);
          //return view('producto.formulario.edit',compact('catergorias','comercio','producto'));
     }
