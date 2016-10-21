@@ -70,6 +70,7 @@
 </table>
 
            {{ $productos->render() }}
+           
         </div>
     @endif            
 @endsection
