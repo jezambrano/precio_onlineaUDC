@@ -3,7 +3,7 @@
 @section('content')
 
 	
-    {!! Form::open(['url' => 'producto', 'id'=>'producto']) !!}
+    {!! Form::open(['url' => 'producto', 'id'=>'producto', 'files' => true]) !!}
 
             @include('producto.partials.form')
             

@@ -42,8 +42,20 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->file('imagen')){    
+            $file = $request->file('imagen');
+            $nombre = 'precios_online_'. time().'.'.$file->getClientOriginalExtension();
+            $path = public_path().'/imagens/productos/';
+            $file->move($path, $nombre);
+            $producto = new Producto;
+            $producto->nombre = $request->nombre;
+            $producto->descripcion = $request->descripcion;
+            $producto->precio = $request->precio;
+            $producto->codigo_barra = $request->codigo_barra;
+            $producto->imagen = $nombre;
+            $producto->save();
+        }
 
-        Producto::create($resquest->all());
         return redirect('producto');
     }
 
@@ -69,9 +81,8 @@ class ProductoController extends Controller
     public function edit($id)
     {
         $comercio=Comercio::find($id);
-        return view('comercio.formulario.edit',compact('comercio'));
-       // $producto=Producto::find($id);
-         //return view('producto.formulario.edit',compact('catergorias','comercio','producto'));
+        $producto=Producto::find($id);
+        return view('producto.formulario.edit',compact('comercio','producto'));
     }
 
     /**
@@ -83,6 +94,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Producto::find($id)->update($request->all());
         return redirect('producto');
     }
 
@@ -94,6 +106,8 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $producto = Producto::find($id);
+        $producto->delete();
+        return redirect('producto');
     }
 }

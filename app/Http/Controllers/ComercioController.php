@@ -88,7 +88,7 @@ class ComercioController extends Controller
      */
     public function update(Request $request, $id)
     {
-	Comercio::find($id)->update($request->all());
+	    Comercio::find($id)->update($request->all());
         return redirect('comercio');
     }
 

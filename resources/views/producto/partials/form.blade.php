@@ -40,7 +40,7 @@
     <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
     {!! Form::label('imagen','imagen del producto (*) ',['class'=> "form-label-cms-3" ]) !!}
 
-    {!! Form::file('imagen',(isset($producto)? $producto->imagen: null),['class'=>'form-control','id' => 'imagen', 'required'=>'required']) !!}
+    {!! Form::file('imagen',(isset($producto)? $producto->imagen: null),['class'=>'form-control','id' => 'imagen']) !!}
 
 </div>
 
