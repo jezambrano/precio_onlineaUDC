@@ -28,6 +28,13 @@ class Comercio extends Model
     	return $this->belongsTo('App\Localidad');
     } 
     
+
+    public function precios()
+    {
+    	return $this->hasMany('App\Precio');
+    }
+
+
     public function  scopeActivos($query){
 		return $query->where('activo',true);
     }

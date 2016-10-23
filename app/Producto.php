@@ -21,5 +21,10 @@ class Producto extends Model
     {
     	return $this->belongsTo('App\Presentacion_Producto');
     }
+
+    public function precios()
+    {
+    	return $this->hasMany('App\Precio');
+    }
 }
 
