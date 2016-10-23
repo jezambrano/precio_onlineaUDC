@@ -1,4 +1,3 @@
-
 @extends('template.layout')
 @section('title',"Producto Index")
 @section('content')
