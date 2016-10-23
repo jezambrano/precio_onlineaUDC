@@ -15,14 +15,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('cargar_producto', function () {
-    return view('producto/formulario/create');
-});
+//Route::get('cargar_producto', function () {
+  //  return view('producto/formulario/create');
+//});
 
 Route::resource('producto','ProductoController');
 
 Route::resource('comercio','ComercioController');
 
-Route::resource('precio','CategoriaController');
+Route::resource('categoria','CategoriaController');
 
-Route::resource('precio','PrecioController');
+
+Route::get('producto/{producto}/precio/create','PrecioControlller@productoPrecio')->name('producto.precio');
+
+
+Route::get('producto/data/{producto}',function($producto=null)
+{
+    
+	$producto=App\Producto::find($producto);
+
+	return $producto;
+});
+
+
+
+Route::resource('precio','PrecioControlller');

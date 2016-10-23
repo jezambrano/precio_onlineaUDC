@@ -26,5 +26,16 @@ class Producto extends Model
     {
     	return $this->hasMany('App\Precio');
     }
+
+    public function  scopeActivos($query){
+		return $query->where('activo',true);
+    }
+    
+    public function  scopeBaja(){
+		$this->activo=false;
+		$this->save();
+	
+    }
+    
 }
 

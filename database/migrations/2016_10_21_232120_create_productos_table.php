@@ -21,12 +21,15 @@ class CreateProductosTable extends Migration
                 ->string('nombre');
             $table
                 ->string('descripcion');
-            $table
-                ->double('precio');
+           // $table
+             //   ->double('precio');
             $table
                 ->string('codigo_barra');    
             $table
                 ->string('imagen');
+            $table
+                ->boolean('activo')
+                    ->default(true);
              //llave a tipo
             $table
                  ->integer('presentacion_producto_id')

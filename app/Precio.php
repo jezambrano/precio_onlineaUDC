@@ -15,10 +15,8 @@ class Precio extends Model
                             'valor',
                             'comercio_id',
                             //'usuario_id',
-                            'producto_id'
-                            'fecha'
-
-
+                            'producto_id',
+                            'fecha',
 							];
 
 	public function comercio()
@@ -36,5 +34,31 @@ class Precio extends Model
     	return $this->belongsTo('App\Usuario');
     } 
 */
+
+    public function setFechaAttribute($value)
+    {
+
+      $this->attributes['fecha'] = date("Y-m-d",strtotime($value));
+      
+    }
+
+    public function setValorAttribute($value)
+    {
+
+      $value=str_replace(',','.',$value); 
+
+      $value= number_format ( $value ,2 );
+      $value=doubleval($value);
+      $this->attributes['valor'] = $value;
+      
+    }
+
+
+    public function getFechaAttribute($value)
+    {
+
+      return date("d-m-Y",strtotime($value));
+      
+    }
 
 }

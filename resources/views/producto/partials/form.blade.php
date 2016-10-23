@@ -17,14 +17,14 @@
 
 </div>
 
-
+{{--
 <div class="form-group">
     {!! Form::label('precio','Precio (*) ',['class'=> "form-label-cms-3" ]) !!}
 
 
     {!! Form::text('precio',(isset($producto)? $producto->precio: null),['class'=>'form-control',(isset($ver)? 'disabled': null ),'id' => 'precio', 'required'=>'required']) !!}
 </div>
-
+--}}
 <div class="form-group">
 
     <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span> 

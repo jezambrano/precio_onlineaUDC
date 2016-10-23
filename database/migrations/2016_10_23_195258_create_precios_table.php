@@ -47,14 +47,6 @@ class CreatePreciosTable extends Migration
                     ->on('productos');
 
 
-            $table
-                 ->integer('producto_id')
-                 ->unsigned();
-
-            $table
-                ->foreign('producto_id')
-                ->references('id')
-                    ->on('productos');
 
 /*
              $table

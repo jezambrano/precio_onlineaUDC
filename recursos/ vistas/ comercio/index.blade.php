@@ -44,26 +44,21 @@
             <td>{{ $comercio->id }}</td>
             <td>{{ $comercio->nombre }}</td>
             <td>{{ $comercio->rubro->nombre }}</td>
-	    <td>{{ $comercio->localidad->nombre }}</td>
+	        <td>{{ $comercio->localidad->nombre }}</td>
             <td>{{ $comercio->horario}}</td>
             <td>
                 <a href='{{route('comercio.show',$comercio->id)}}' class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a>
        
-
             </td>
             <td>
-		<a href='{{route('comercio.edit',$comercio->id)}}' class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
-
-
-
-
+		      <a href='{{route('comercio.edit',$comercio->id)}}' class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
             
             <td >
 		
-		{{ Form::model($comercio, ["method" => "delete", "route" => ["comercio.destroy", $comercio->id], "class" =>"form-inline form-delete"]) }}
-		{{ Form::button("<span class='glyphicon glyphicon-trash'></span>", array("type" => "submit", "class" => "btn btn-danger delete")) }}
-		{{ Form::close()}}
+		      {{ Form::model($comercio, ["method" => "delete", "route" => ["comercio.destroy", $comercio->id], "class" =>"form-inline form-delete"]) }}
+		      {{ Form::button("<span class='glyphicon glyphicon-trash'></span>", array("type" => "submit", "class" => "btn btn-danger delete")) }}
+		      {{ Form::close()}}
 		
 
             </td>
