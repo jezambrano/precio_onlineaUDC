@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Producto;
 use App\Comercio;
+use App\Presentacion_Producto;
 
 class ProductoController extends Controller
 {
@@ -28,10 +29,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //listado de comercio
-        $comercios = Comercio::all()->lists('nombre','id');
-        //$catergorias= Categoria::all();
-        return view('producto.formulario.create',compact('comercios')); //add categorias
+        $presentaciones = Presentacion_Producto::all()->lists('nombre','id');
+        return view('producto.formulario.create',compact('presentaciones')); //add categorias
     }
 
     /**
@@ -45,14 +44,16 @@ class ProductoController extends Controller
         if($request->file('imagen')){    
             $file = $request->file('imagen');
             $nombre = 'precios_online_'. time().'.'.$file->getClientOriginalExtension();
-            $path = public_path().'/imagens/productos/';
+            $path = public_path().'/imagenes/productos/';
             $file->move($path, $nombre);
+
             $producto = new Producto;
             $producto->nombre = $request->nombre;
             $producto->descripcion = $request->descripcion;
             $producto->precio = $request->precio;
             $producto->codigo_barra = $request->codigo_barra;
             $producto->imagen = $nombre;
+            $producto->presentacion_producto_id = $request->presentacion_producto_id;
             $producto->save();
         }
 
@@ -67,9 +68,10 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        $comercio=Comercio::find($id);
+        $producto=Producto::find($id);
+        $presentaciones = Presentacion_Producto::all()->lists('nombre','id');
         $ver=true;
-        return view('producto.formulario.show',compact('comercio','ver'));
+        return view('producto.formulario.show',compact('producto','ver','presentaciones'));
     }
 
     /**
@@ -80,9 +82,9 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        $comercio=Comercio::find($id);
         $producto=Producto::find($id);
-        return view('producto.formulario.edit',compact('comercio','producto'));
+        $presentaciones = Presentacion_Producto::all()->lists('nombre','id');
+        return view('producto.formulario.edit',compact('presentaciones','producto'));
     }
 
     /**

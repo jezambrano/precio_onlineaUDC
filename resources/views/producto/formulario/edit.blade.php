@@ -1,11 +1,10 @@
 @extends('template.layout')
-
+@section('title',"Modificacion de Producto")
 @section('content')
 
-	
-	{!! Form::model($producto,['route'=>['clientes.update',$producto->id],'id'=>'producto']) !!}
+    {{ Form::model($producto,[ 'method' => 'PUT','route' => ['producto.update',$producto->id] ] ) }}
 
-            @include('producto.partials.form')
+         @include('producto.partials.form')   
             
     {!! Form::close() !!}
 
