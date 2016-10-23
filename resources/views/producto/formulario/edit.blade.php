@@ -2,7 +2,7 @@
 @section('title',"Modificacion de Producto")
 @section('content')
 
-    {{ Form::model($producto,[ 'method' => 'PUT','route' => ['producto.update',$producto->id] ] ) }}
+    {{ Form::model($producto,[ 'method' => 'PUT','route' => ['producto.update',$producto->id],'files' => true ] ) }}
 
          @include('producto.partials.form')   
             

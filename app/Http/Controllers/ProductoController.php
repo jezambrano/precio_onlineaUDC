@@ -43,7 +43,8 @@ class ProductoController extends Controller
     {
         if($request->file('imagen')){    
             $file = $request->file('imagen');
-            $nombre = 'precios_online_'. time().'.'.$file->getClientOriginalExtension();
+
+            $nombre = 'precios_online_'.time().'.'.$file->getClientOriginalExtension();
             $path = public_path().'/imagenes/productos/';
             $file->move($path, $nombre);
 
@@ -96,7 +97,23 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Producto::find($id)->update($request->all());
+        $producto = Producto::find($id);
+
+        if($request->file('imagen')){ //si viene un imagen
+            //destruir imagen   
+            $file = $request->file('imagen');
+            $nombre = 'precios_online_'.time().'.'.$file->getClientOriginalExtension();
+            $path = public_path().'/imagenes/productos/';
+            $file->move($path, $nombre);
+            $producto->imagen = $nombre;
+        }
+        $producto->nombre = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->precio = $request->precio;
+        $producto->codigo_barra = $request->codigo_barra;
+        $producto->presentacion_producto_id = $request->presentacion_producto_id;
+        $producto->save();
+        
         return redirect('producto');
     }
 

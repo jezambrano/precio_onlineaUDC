@@ -48,7 +48,7 @@
         <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
         {!! Form::label('imagen','imagen del producto (*) ',['class'=> "form-label-cms-3" ]) !!}
 
-        {!! Form::file('imagen',(isset($producto)? $producto->imagen: null),['class'=>'form-control','id' => 'imagen']) !!}
+        {!! Form::file('imagen',['id' => 'imagen']) !!}
 
     </div>
     {!! Form::submit('Enviar',['class'=> "btn btn-default" ]) !!}
