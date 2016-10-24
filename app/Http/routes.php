@@ -15,9 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('cargar_producto', function () {
-  //  return view('producto/formulario/create');
-//});
 
 Route::resource('producto','ProductoController');
 

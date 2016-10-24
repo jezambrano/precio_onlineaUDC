@@ -29,7 +29,8 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
 
-
+        $this->validate($request, ['nombre'=>['required', 'max:45'], 'descripcion'=>['required', 'min:3', 'max:45'], 'codigo_barra'=>['required', 'min:0000000000001', 'max:9999999999999'], 'presentacion'=>['required']]);
+        
         $producto=Producto::create( $request->all() );
 
 
@@ -66,6 +67,8 @@ class ProductoController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, ['nombre'=>['required', 'max:45'], 'descripcion'=>['required', 'min:3', 'max:45'], 'codigo_barra'=>['required', 'min:0000000000001', 'max:9999999999999'], 'presentacion'=>['required']]);
+        
         $producto = Producto::find($id);
 
 

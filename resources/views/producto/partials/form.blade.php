@@ -17,14 +17,6 @@
 
 </div>
 
-{{--
-<div class="form-group">
-    {!! Form::label('precio','Precio (*) ',['class'=> "form-label-cms-3" ]) !!}
-
-
-    {!! Form::text('precio',(isset($producto)? $producto->precio: null),['class'=>'form-control',(isset($ver)? 'disabled': null ),'id' => 'precio', 'required'=>'required']) !!}
-</div>
---}}
 <div class="form-group">
 
     <span class="glyphicon glyphicon-barcode" aria-hidden="true"></span> 
@@ -51,13 +43,14 @@
         {!! Form::file('imagen',['id' => 'imagen']) !!}
 
     </div>
-    {!! Form::submit('Enviar',['class'=> "btn btn-default" ]) !!}
+    {!! Form::button('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Enviar', ['type' => 'submit', 'class' => 'btn btn-success']) !!}
+   
    @else
     <div class="form-group">
         <img class="img-responsive" alt="Responsive image" src="/imagenes/productos/{{ $producto->imagen}}"> 
     </div>
-   <a href="{{route('producto.edit',$producto->id)}}" class="btn btn-warning ">Editar</a>
+   <a href="{{route('producto.edit',$producto->id)}}" class="btn btn-warning "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</a>
 @endif
 
-      <a href="{{ route('producto.index') }}" class="btn btn-danger">Cancelar</a>
+            <a href="{{ route('producto.index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</a>
     

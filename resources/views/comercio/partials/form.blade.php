@@ -13,7 +13,7 @@
 </div>
 <div class="form-group">
 	{!! Form::label('telefono','telefono del comercio '. (isset($ver)? '': '(*)' ),['class'=> 'form-label-cms-3' ]) !!}
-	{!! Form::text('telefono',(isset($comercio)? $comercio->telefono: null),['class'=>'form-control','id' => 'telefono','required',(isset($ver)? 'readonly': '' )]) !!}
+	{!! Form::number('telefono',(isset($comercio)? $comercio->telefono: null),['class'=>'form-control','id' => 'telefono', 'min'=>'1000000', 'max'=>'999999999999','required',(isset($ver)? 'readonly': '' )]) !!}
 </div>
 <div class="form-group">
 	{!! Form::label('horario','horario del comercio'. (isset($ver)? '': '(*)' ),['class'=> "form-label-cms-3" ]) !!}
@@ -30,10 +30,11 @@
 </div>
 
 @if(!(isset($ver)))
-    {!! Form::submit('Enviar',['class'=> "btn btn-default" ]) !!}
+    {!! Form::button('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Enviar', ['type' => 'submit', 'class' => 'btn btn-success']) !!}
+    
    @else
-   <a href="{{route('comercio.edit',$comercio->id)}}" class="btn btn-warning ">Editar</a>
+   <a href="{{route('comercio.edit',$comercio->id)}}" class="btn btn-warning "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</a>
 @endif
 
-      <a href="{{ route('comercio.index') }}" class="btn btn-danger">Cancelar</a>
+      <a href="{{ route('comercio.index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</a>
 	
