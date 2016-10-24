@@ -39,14 +39,7 @@ class ProductoController extends Controller
             $nombre = 'precios_online_'.time().'.'.$file->getClientOriginalExtension();
             $path = public_path().'/imagenes/productos/';
             $file->move($path, $nombre);
-
-            //$producto = new Producto;
-            //$producto->nombre = $request->nombre;
-            //$producto->descripcion = $request->descripcion;
-            //$producto->precio = $request->precio;
-            //$producto->codigo_barra = $request->codigo_barra;
-            //$producto->imagen = $nombre;
-            //$producto->presentacion_producto_id = $request->presentacion_producto_id;
+            $producto->imagen = $nombre;
             $producto->save();
         }
 
@@ -88,11 +81,6 @@ class ProductoController extends Controller
             $file->move($path, $nombre);
             $producto->imagen = $nombre;
         }
-       // $producto->nombre = $request->nombre;
-       // $producto->descripcion = $request->descripcion;
-       // $producto->precio = $request->precio;
-        //$producto->codigo_barra = $request->codigo_barra;
-        //$producto->presentacion_producto_id = $request->presentacion_producto_id;
         $producto->save();
         
         return redirect('producto');
@@ -101,8 +89,6 @@ class ProductoController extends Controller
 
     public function destroy($id)
     {
-        //$producto = Producto::find($id);
-        //$producto->delete();
         Producto::find($id)->baja();
         return redirect('producto');
     }
