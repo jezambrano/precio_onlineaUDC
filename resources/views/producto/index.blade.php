@@ -2,7 +2,6 @@
 @section('title',"Producto Index")
 @section('content')
     <a href="{{ route('producto.create') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</a>
-     <a class="btn btn-info" href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio</a> 
     <br><br>
 
     @if(isset($productos))

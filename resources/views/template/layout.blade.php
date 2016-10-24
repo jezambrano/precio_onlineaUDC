@@ -27,7 +27,6 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">Inicio</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
@@ -48,6 +47,14 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('comercio.index') }}">Ver Comercios</a></li>
                                 <li><a href="{{ route('comercio.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="comercio" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listado de Precios <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('precio.index') }}">Ver Precios</a></li>
+                                <li><a href="{{ route('precio.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</a></li>
                             </ul>
                         </li>
 

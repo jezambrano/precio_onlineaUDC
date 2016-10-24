@@ -7,14 +7,6 @@
         <h1> Bienvenido <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h1> 
     </div>
 
-
-
-    <div class="form-group row">
-	<a class="btn btn-info" href="{{ route('producto.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Cargar Producto</a>
-    </div>
-    
-
-
     <div  class="form-group row">
 
     <a class="btn btn-info" href="{{ route('producto.index') }}"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Productos</a>
