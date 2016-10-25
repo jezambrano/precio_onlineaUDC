@@ -1,3 +1,4 @@
+
 @extends('template.layout')
 @section('title',"Ver Producto")
 @section('content')
