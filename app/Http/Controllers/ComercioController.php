@@ -32,7 +32,7 @@ class ComercioController extends Controller
     public function store(ComercioResquest $request)
     {
 
-        $this->validate($request, ['nombre'=>['required', 'max:45'], 'rubro_id'=>['required'], 'localidad_id'=>['required'], 'direccion_calle'=>['required', 'max:20'], 'direccion_numero'=>['required', 'min:0000', 'max:10000'], 'telefono'=>['required', 'max:11'], 'horario_atencion'=>['required','max:20']]);
+      //  $this->validate($request, ['nombre'=>['required', 'max:45'], 'rubro_id'=>['required'], 'localidad_id'=>['required'], 'direccion_calle'=>['required', 'max:20'], 'direccion_numero'=>['required', 'min:0000', 'max:10000'], 'telefono'=>['required', 'max:11'], 'horario_atencion'=>['required','max:20']]);
          
 	
 	   Comercio::create($request->all());
@@ -63,7 +63,7 @@ class ComercioController extends Controller
 
     public function update(ComercioResquest $request, $id)
     {
-	   $this->validate($request, ['nombre'=>['required', 'max:45'], 'rubro_id'=>['required'], 'localidad_id'=>['required'], 'direccion_calle'=>['required', 'max:20'], 'direccion_numero'=>['required', 'min:0000', 'max:10000'], 'telefono'=>['required', 'max:11'], 'horario_atencion'=>['required','max:20']]);
+	   //$this->validate($request, ['nombre'=>['required', 'max:45'], 'rubro_id'=>['required'], 'localidad_id'=>['required'], 'direccion_calle'=>['required', 'max:20'], 'direccion_numero'=>['required', 'min:0000', 'max:10000'], 'telefono'=>['required', 'max:11'], 'horario_atencion'=>['required','max:20']]);
         
         Comercio::find($id)->update($request->all());
         return redirect('comercio');

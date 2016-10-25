@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Producto;
 use App\Comercio;
 use App\Presentacion_Producto;
+use App\Http\Requests\ProductoRequest;
 
 class ProductoController extends Controller
 {
@@ -26,12 +27,12 @@ class ProductoController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(ProductoRequest $request)
     {
 
-        $this->validate($request, ['nombre'=>['required', 'max:45'], 'descripcion'=>['required', 'min:3', 'max:45'], 'codigo_barra'=>['required', 'min:0000000000001', 'max:9999999999999'], 'presentacion'=>['required']]);
+       //$this->validate($request, ['nombre'=>['required', 'max:45'], 'descripcion'=>['required', 'min:3', 'max:140'], 'codigo_barra'=>['required', 'min:0000000000001', 'max:9999999999999'], 'presentacion_producto_id'=>['required']]);
         
-        $producto=Producto::create( $request->all() );
+        $producto=Producto::create( $request->except('imagen') );
 
 
         if(  $request->file('imagen')   ){    
@@ -65,14 +66,14 @@ class ProductoController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(ProductoRequest $request, $id)
     {
-        $this->validate($request, ['nombre'=>['required', 'max:45'], 'descripcion'=>['required', 'min:3', 'max:45'], 'codigo_barra'=>['required', 'min:0000000000001', 'max:9999999999999'], 'presentacion'=>['required']]);
+       // $this->validate($request, ['nombre'=>['required', 'max:45'], 'descripcion'=>['required', 'min:3', 'max:140'], 'codigo_barra'=>['required', 'min:0000000000001', 'max:9999999999999'], 'presentacion_producto_id'=>['required']]);
         
         $producto = Producto::find($id);
 
 
-        $producto->update($request->all());
+        $producto->update($request->except('imagen'));
 
 
 

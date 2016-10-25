@@ -13,7 +13,7 @@ class ProductoRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,10 +26,10 @@ class ProductoRequest extends Request
         return [
             'nombre' => 'required|max:30',
             'descripcion' => 'required|max:225',
-            'precio' => 'required', 
-            'codigo_barra' => 'required|max:30|unique:producto,codigo_barra',
+            //'precio' => 'required', 
+            'codigo_barra' => 'required|max:30|unique:productos,codigo_barra,'.$this->producto,
             'presentacion_producto_id' => 'required',
-            'imagen' => 'image|size:2400|required',
+            'imagen' => 'image',
         ];
     }
 }

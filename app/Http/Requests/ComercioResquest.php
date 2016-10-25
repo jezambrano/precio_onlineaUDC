@@ -24,11 +24,14 @@ class ComercioResquest extends Request
     public function rules()
     {
         return [
-            'nombre' => 'required|max:30',
-            'direccion_calle' => 'required|max:225|unique:comercios,domicilio_calle,'.$this->comercio,
-            'direccion_numero' => 'required|max:30|unique:comercios,direccion_numero,'.$this->comercio, 
-            'telefono' => 'required|max:30|unique:comercios,telefono,'.$this->comercio,
-            'horario_atencion' => 'required|max:30',
+         
+            'nombre' => 'required|max:45',
+            'rubro_id' => 'required|exists:rubros,id',
+            'localidad_id' => 'required|exists:localidades,id',
+            'direccion_calle' => 'required|max:100|unique:comercios,direccion_calle,'.$this->comercio,
+            'direccion_numero' => 'max:30|min:1|unique:comercios,direccion_numero,'.$this->comercio, 
+            'telefono' => 'required|max:11',
+            'horario' => 'required|max:40',
 
         ];
     }
