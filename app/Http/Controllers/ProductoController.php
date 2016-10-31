@@ -35,7 +35,8 @@ class ProductoController extends Controller
         $producto=Producto::create( $request->except('imagen') );
 
 
-        if(  $request->file('imagen')   ){    
+        if(  $request->file('imagen')   ){   
+
             $file = $request->file('imagen');
 
             $nombre = 'precios_online_'.time().'.'.$file->getClientOriginalExtension();
@@ -47,6 +48,15 @@ class ProductoController extends Controller
 
         return redirect('producto');
     }
+
+
+
+
+
+
+
+
+
 
 
     public function show($id)
