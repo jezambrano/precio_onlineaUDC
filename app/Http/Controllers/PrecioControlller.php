@@ -18,7 +18,15 @@ class PrecioControlller extends Controller
     {
         
         $productos=Producto::activos()->get()->lists('id');
-        $precios= Precio::whereIn('producto_id',$productos->toArray() )->paginate(5);
+
+     
+
+
+        $precios= Precio::whereIn('producto_id',$productos->toArray() )->groupBy('comercio_id')->get();
+
+        dd($precios);
+
+        //->paginate(5);
 
         return view('precio.index',compact('precios'));
     }
