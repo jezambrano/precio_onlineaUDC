@@ -12,6 +12,6 @@ class ComercioSeeder extends Seeder
     public function run()
     {
         \DB::table('comercios')->truncate();
-    	factory('App\Comercio',20)->create();
+    	factory('App\Comercio',7)->create();
     }
 }
