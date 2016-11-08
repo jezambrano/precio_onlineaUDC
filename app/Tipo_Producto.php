@@ -17,7 +17,7 @@ class Tipo_Producto extends Model
 
 	public function categoria_producto()
     {
-    	return $this->belongsTo('App\Categoria_Producto');
+    	return $this->belongsTo('App\Categoria_Producto','id','categoria_producto_id');
     }
 
     public function presentaciones_producto()

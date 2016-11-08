@@ -23,7 +23,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Rubro::class, function (Faker\Generator $faker) {
     return [
-        'nombre' => $faker->unique()->jobTitle
+        'nombre' => $faker->unique()->randomElement(['Sumpermercado_Mayorista','Sumpercado_Minorista','Mecardao_Por_Menor','Bazar','Supermerk-2','Otros'])
     ];
 });
 $factory->define(App\Localidad::class, function (Faker\Generator $faker) {
@@ -37,13 +37,14 @@ $factory->define(App\Localidad::class, function (Faker\Generator $faker) {
 $factory->define(App\Comercio::class, function (Faker\Generator $faker) {
 	 $rubro_id = App\Rubro::all()->lists('id'); 
      $localidad_id = App\Localidad::all()->lists('id'); 
-	 $rubro_id = $faker
+	 
+      $rubro_id = $faker
                       ->randomElement($rubro_id->toArray());
-     $localidad_id = $faker
+      $localidad_id = $faker
                       ->randomElement($localidad_id->toArray());
 
     return [
-        'nombre' => $faker->unique()->company,
+        'nombre' => $faker->unique()->randomElement(['Coto','La Anonima','Don Leon','Chango','Carrefur','La Confi','Superferia']),
         'rubro_id' => $rubro_id,
         'direccion_calle'=>$faker->streetAddress,
         'direccion_esquina'=>$faker->streetAddress,
@@ -57,7 +58,7 @@ $factory->define(App\Comercio::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Categoria_Producto::class, function (Faker\Generator $faker) {
     return [
-        'nombre' => $faker->unique()->jobTitle
+        'nombre' => $faker->unique()->randomElement(['Tiempo_Libre','Hogar','Tecnologia','Otros'])
     ];
 });
 

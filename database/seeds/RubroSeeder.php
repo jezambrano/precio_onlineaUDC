@@ -12,6 +12,6 @@ class RubroSeeder extends Seeder
     public function run()
     {
         \DB::table('rubros')->truncate();
-    	factory('App\Rubro',10)->create();
+    	factory('App\Rubro',6)->create();
     }
 }

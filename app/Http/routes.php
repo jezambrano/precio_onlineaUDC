@@ -40,6 +40,8 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 
 
+Route::get('filtrar_producto/{producto}','PrecioController@filtraProducto');
+Route::get('filtrar_categoria/{categoria}','PrecioController@filtraCategoria');
 
 Route::resource('producto','ProductoController');
 
@@ -48,7 +50,7 @@ Route::resource('comercio','ComercioController');
 Route::resource('categoria','CategoriaController');
 
 
-Route::get('producto/{producto}/precio/create','PrecioControlller@productoPrecio')->name('producto.precio');
+Route::get('producto/{producto}/precio/create','PrecioController@productoPrecio')->name('producto.precio');
 
 
 Route::get('producto/data/{producto}',function($producto=null)
@@ -61,4 +63,4 @@ Route::get('producto/data/{producto}',function($producto=null)
 
 
 
-Route::resource('precio','PrecioControlller');
+Route::resource('precio','PrecioController');

@@ -18,7 +18,11 @@ class Categoria_Producto extends Model
 
     public function comercios()
     {
-    	return $this->hasMany('App\Tipo_Producto');
+    	return $this->hasMany('App\Comercio');
     } 
 
+    public function tipo_producto()
+    {
+    	return $this->hasMany('App\Tipo_Producto','categoria_producto_id');
+    } 
 }
