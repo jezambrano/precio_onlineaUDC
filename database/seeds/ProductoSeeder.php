@@ -63,8 +63,6 @@ class ProductoSeeder extends Seeder
     	Producto::create(['nombre'=>'Alcatel 10.16G','presentacion_producto_id'=>$presentacion]);
 
 
-
-
     	$presentacion=presentacion::where('presentacion_producto_id','LIKE','GPS')->get()->first()->id;
     	Producto::create(['nombre'=>'Garmin','presentacion_producto_id'=>$presentacion]);
     	$presentacion=presentacion::where('presentacion_producto_id','LIKE','GPS')->get()->first()->id;
