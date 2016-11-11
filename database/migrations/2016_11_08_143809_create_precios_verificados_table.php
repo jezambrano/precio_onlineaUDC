@@ -42,7 +42,7 @@ class CreatePreciosVerificadosTable extends Migration
             ->timestamps();
         });    
     }
-
+    
     /**
      * Reverse the migrations.
      *
