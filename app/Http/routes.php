@@ -67,3 +67,4 @@ Route::get('producto/data/{producto}',function($producto=null)
 
 Route::resource('precio','PrecioController');
 
+Route::resource('presentacion','PresentacionController');

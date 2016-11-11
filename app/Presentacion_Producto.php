@@ -13,7 +13,7 @@ class Presentacion_Producto extends Model
 	protected $fillable = [
                             'nombre',
                             'tipo_producto_id' 
-							];
+						   ];
 
 	public function tipo_producto()
     {
@@ -22,7 +22,7 @@ class Presentacion_Producto extends Model
 
     public function productos()
     {
-    	return $this->hasMany('App\Producto');
+    	return $this->hasMany('App\Producto','id','tipo_producto_id');
     } 
 
 }
