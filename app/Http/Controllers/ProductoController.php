@@ -49,16 +49,6 @@ class ProductoController extends Controller
         return redirect('producto');
     }
 
-
-
-
-
-
-
-
-
-
-
     public function show($id)
     {
         $producto=Producto::find($id);

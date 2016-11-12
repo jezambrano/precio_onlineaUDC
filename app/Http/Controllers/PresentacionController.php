@@ -15,7 +15,8 @@ class PresentacionController extends Controller
      */
     public function index()
     {
-        dd(Presentacion::find(1)->load('tipo_producto', 'productos'));
+        $presentaciones = Presentacion::all();//->load('tipo_producto', 'productos'));
+        return view('presentacion.index',compact('presentaciones'));
 
     }
 
