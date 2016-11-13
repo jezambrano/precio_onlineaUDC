@@ -7,7 +7,6 @@
 
         @yield('style')
 
-
         <style>
             body{
                 margin-top: 60px;

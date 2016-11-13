@@ -27,7 +27,7 @@ class PresentacionController extends Controller
      */
     public function create()
     {
-        //
+        return view('presentacion.formulario.create');
     }
 
     /**
@@ -49,7 +49,9 @@ class PresentacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $presentacion = Presentacion::first();
+        $ver=true;
+        return view('presentacion.formulario.show', compact('presentacion', 'ver'));
     }
 
     /**
@@ -60,7 +62,8 @@ class PresentacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $presentacion = Presentacion::first();
+        return view('presentacion.formulario.edit', compact('presentacion'));
     }
 
     /**
