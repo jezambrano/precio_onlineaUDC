@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Presentacion_Producto as Presentacion;
+use App\tipo_producto as Tipo;
 class PresentacionController extends Controller
 {
     /**
@@ -27,7 +28,8 @@ class PresentacionController extends Controller
      */
     public function create()
     {
-        return view('presentacion.formulario.create');
+        $tipos = Tipo::all()->lists('nombre','id');
+        return view('presentacion.formulario.create', compact('tipos'));
     }
 
     /**
