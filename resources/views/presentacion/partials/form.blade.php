@@ -11,6 +11,7 @@
 	    {!! Form::select('tipo_producto_id',['' => 'Seleccione un tipo'] + $tipos->toArray(),(isset($tipo)? $tipo->id: null),['id' => 'tipo','class'=>'form-control',(isset($tipo)? 'disabled': null )]) !!}
 	</div>
 @if(!(isset($ver)))
+
     {!! Form::button('<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Enviar', ['type' => 'submit', 'class' => 'btn btn-success']) !!}
    @else
    <a href="{{route('presentacion.edit',$presentacion->id)}}" class="btn btn-warning "><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</a>

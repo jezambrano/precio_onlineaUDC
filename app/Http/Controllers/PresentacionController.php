@@ -52,6 +52,8 @@ class PresentacionController extends Controller
     public function show($id)
     {
         $presentacion = Presentacion::first();
+            //'productos' 
+            //'tipo_producto'
         $ver=true;
         return view('presentacion.formulario.show', compact('presentacion', 'ver'));
     }
