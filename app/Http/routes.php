@@ -10,18 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/', ['uses' => 'HomeController@index', 'as' => 'inicio']
-);
+*/
+Route::get('/', 'HomeController@index')->name('inicio');
 
 
 // Authentication routes...
 Route::get('login', ['uses' => 'Auth\AuthController@getLogin', 'as' => 'login']);
 Route::post('login', ['uses' => 'Auth\AuthController@postLogin', 'as' => 'login']);
-Route::get('logout', ['uses' => 'Auth\AuthController@getLogout', 'as' => 'logout']);
+Route::get('logout', ['uses' => 'Auth\AuthController@logout', 'as' => 'logout']);
 
 // Registration routes...
 Route::get('register', ['uses' => 'Auth\AuthController@getRegister', 'as' => 'register']);

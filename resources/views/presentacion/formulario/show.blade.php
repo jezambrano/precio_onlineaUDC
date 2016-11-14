@@ -7,7 +7,6 @@
 
     @include('presentacion.partials.form')
     <br/><h3>Productos</h3></br>
-    if(isset($productos))
     <div class="form-group">
         <table class="table table-bordered">
         	<thead>
@@ -20,26 +19,26 @@
                 </tr>
             </thead>
             <tbody>
-			@foreach($productos as $producto)
+			@foreach($presentacion->productos as $producto)
 				<tr>
 					<td>{{ $producto->nombre }}</td>
 					<td>{{ $producto->descripcion }}</td>
 					<td>{{ $producto->precio }}</td>
 					<td>{{ $producto->codigo_barra }}</td>
-					<td><button class="btn btn-primary">Quitar</button></td>
+					<td><button class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="Quitar el producto de esta presentacion"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
 				</tr>
 			@endforeach
 		 	</tbody>
 		</div>
-    @enfif
-
 @endsection
 
 @section('script')
 
 <script type="text/javascript">
 	
-
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 
 </script>
 @endsection

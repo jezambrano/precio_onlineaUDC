@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Presentacion_Producto as Presentacion;
-use App\tipo_producto as Tipo;
+use App\Tipo_Producto as Tipo;
 class PresentacionController extends Controller
 {
     /**
@@ -16,7 +16,7 @@ class PresentacionController extends Controller
      */
     public function index()
     {
-        $presentaciones = Presentacion::all();//->load('tipo_producto', 'productos'));
+        $presentaciones = Presentacion::paginate(10);//->load('tipo_producto', 'productos'));
         return view('presentacion.index',compact('presentaciones'));
 
     }
@@ -51,9 +51,7 @@ class PresentacionController extends Controller
      */
     public function show($id)
     {
-        $presentacion = Presentacion::first();
-            //'productos' 
-            //'tipo_producto'
+        $presentacion = Presentacion::first()->load('tipo_producto', 'productos');
         $ver=true;
         return view('presentacion.formulario.show', compact('presentacion', 'ver'));
     }
@@ -66,8 +64,10 @@ class PresentacionController extends Controller
      */
     public function edit($id)
     {
-        $presentacion = Presentacion::first();
-        return view('presentacion.formulario.edit', compact('presentacion'));
+
+        $presentacion = Presentacion::find($id);
+        $tipos = Tipo::all()->lists('nombre','id');
+        return view('presentacion.formulario.edit', compact('presentacion', 'tipos'));
     }
 
     /**

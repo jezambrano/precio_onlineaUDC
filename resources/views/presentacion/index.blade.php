@@ -43,6 +43,7 @@
                 @endforeach<!-- fin de tabla de presntaciones-->
             	</tbody>
         	</table>
+            {{ $presentaciones->render() }}
 
     </div>
     @endif  
