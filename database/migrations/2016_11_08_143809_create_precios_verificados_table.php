@@ -12,24 +12,26 @@ class CreatePreciosVerificadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('productos', function (Blueprint $table){
+        Schema::create('precios_verificados', function (Blueprint $table){
 
        $table
             ->increments('id');
 
         $table
-            ->integer('usuario');    
+            ->integer('usuario_id')
+             ->unsigned();  
 
         $table
-                ->foreign('usuario')
+                ->foreign('usuario_id')
                 ->references('id')
                     ->on('users');
 
         $table
-            ->time('fecha_registro');
+            ->date('fecha_registro');
 
         $table
-            ->integer('precio_id');
+            ->integer('precio_id')
+             ->unsigned();
 
         $table
                 ->foreign('precio_id')

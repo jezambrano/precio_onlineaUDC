@@ -40,6 +40,7 @@
             <th>Precio</th>
             <th>Codigo</th>
             <th>Comercio</th>
+            <th>Verificar</th>
         </tr>
     </thead>
     <tfoot>
@@ -48,8 +49,9 @@
         Total de Precios
         </td>
         <td>
-        {{ $precios-> total()}}
+       
         </td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -68,13 +70,14 @@
             <td>${{ $precio->valor }}</td>
             <td>{{ $precio->producto->codigo_barra}}</td>
             <td>{{ $precio->comercio->nombre}}</td>
+            <td>{!! $precio->boton_verificado !!} </td>
          
         </tr>
         @endforeach
     </tbody>
 </table>
 
-           {{ $precios->render() }}
+          
            
         </div>
     @endif            
@@ -110,21 +113,17 @@
               if(data[0] == null ){
 
 
-                  $('#tabla_producto tbody').append("<tr style='background:#f5f5f5;font-weight:bold;' ><td></td><td></td><td>No Hay precios registrado para ese producto</td><td></td><td></td><td>");
+                  $('#tabla_producto tbody').append("<tr style='background:#f5f5f5;font-weight:bold;' ><td></td><td></td><td>No Hay precios registrado para ese producto</td><td></td><td></td><td></td><td></td></tr>");
 
-                  // $("#tabla_producto").attr('class', 'table table-bordered-hover');
+               
                  
 
               } else{
 
-                 //$("#tabla_producto").attr('class', ' table table-bordered');
-
-               
-
                     $.each( data, function( key, value ) {
 
 
-                        $('#tabla_producto tbody').append("<tr><td>"+value.id+"</td><td>"+value.producto.nombre+"</td><td>"+value.producto.descripcion+"</td><td>"+value.valor+"</td><td>"+value.producto.codigo_barra+"</td><td>"+value.comercio.nombre +"</td></tr>");   
+                        $('#tabla_producto tbody').append("<tr><td>"+value.id+"</td><td>"+value.producto.nombre+"</td><td>"+value.producto.descripcion+"</td><td>"+value.valor+"</td><td>"+value.producto.codigo_barra+"</td><td>"+value.comercio.nombre +"</td></td><td>"+value.boton_verificado+"</td></tr>");   
                             
 
              

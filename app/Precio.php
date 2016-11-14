@@ -28,6 +28,13 @@ class Precio extends Model
     {
     	return $this->belongsTo('App\Producto');
     } 
+
+
+    public function precios_verificados()
+    {
+        return $this->HashMany('App\Precio_Verificado','id','precio_id');
+    } 
+
 /*
     public function usuario()
     {

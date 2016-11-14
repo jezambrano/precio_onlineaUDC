@@ -23,4 +23,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+    public function precios_verificados()
+    {
+        return $this->hasMany('App\Precio_Verificado','id','usuario_id');
+    } 
+
+
 }

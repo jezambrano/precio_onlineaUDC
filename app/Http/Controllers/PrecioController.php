@@ -11,6 +11,7 @@ use App\Comercio;
 use App\Precio;
 use App\Categoria_Producto as Categoria;
 use App\Presentacion_Producto as Presentacion;
+use Auth;
 
 
 class PrecioController extends Controller
@@ -19,13 +20,25 @@ class PrecioController extends Controller
     public function index()
     {
 
+       
+
+        $precios_verificados=[];
+        if(Auth::check()){
+            $user=Auth::user();
+            $precios_verificados=$user->precios_verificados->lists('precio_id')->toArray();
+
+        }
+        
+    
+       
+
         $categorias=Categoria::all()->lists('nombre','id');
         
         $productos=Producto::activos()->get();
 
     
 
-        $precios= Precio::whereIn('producto_id',$productos->lists('id')->toArray() )->get();
+        $precios= Precio::whereIn('producto_id',$productos->lists('id')->toArray() )->orderBy('valor','desc')->get();
         $productos_de_precios= $precios->lists('producto_id');
 
         $productos_de_precios=array_unique($productos_de_precios->toArray());
@@ -42,14 +55,30 @@ class PrecioController extends Controller
                 $producto_buscar=$precios->where('comercio_id',$comercio)->where('producto_id',$producto)->last();
 
                 if(!empty($producto_buscar)){
-                    $p[$i]=$producto_buscar->id;
-                    $i++;
+
+                    $p[$i]=$producto_buscar;
+                   
+                    if(in_array($producto_buscar->id, $precios_verificados)){
+                        $p[$i]['boton_verificado']='';
+                    }else{
+                        if(Auth::check()){
+                             $p[$i]['boton_verificado']='<a href='."{{route('producto.precio',$producto_buscar->id)}}".' class="btn btn-info"><span class="glyphicon glyphicon-ok"></span></a>';
+                        }else{
+                            $p[$i]['boton_verificado']='';
+                        }
+                       
+                    }
+                     $i++;
+
+                  
                 }
             }
 
         }
 
-        $precios= Precio::whereIn('id',$p )->orderBy('valor','desc')->paginate(5);
+        $precios=$p;
+      
+
         $productos=$productos->lists('nombre','id');
 
         return view('precio.index',compact('precios','productos','categorias'));
@@ -115,9 +144,17 @@ class PrecioController extends Controller
     public function filtraProducto($producto){
 
 
+        $precios_verificados=[];
+        if(Auth::check()){
+            $user=Auth::user();
+            $precios_verificados=$user->precios_verificados->lists('precio_id')->toArray();
+
+        }
+
+
         $productos=Producto::activos()->get(); 
 
-        $precios=Precio::whereIn('producto_id',$productos->lists('id')->toArray() )->get();
+        $precios=Precio::whereIn('producto_id',$productos->lists('id')->toArray() )->orderBy('valor','desc')->get();
 
         $comercios=array_unique($precios->lists('comercio_id')->toArray());
 
@@ -142,10 +179,22 @@ class PrecioController extends Controller
             
                 $producto_buscar=$precios->where('comercio_id',$comercio)->where('producto_id',$producto)->last();
 
-                if(!empty($producto_buscar)){
-                    $p[$i]=$producto_buscar->id;
-                    $i++;
-                }
+                    if(!empty($producto_buscar)){
+
+                        $p[$i]=Precio::with('comercio','producto')->where('id',$producto_buscar->id)->get()->first();
+                   
+                    if(in_array($producto_buscar->id, $precios_verificados)){
+                        $p[$i]['boton_verificado']='';
+                    }else{
+                        if(Auth::check()){
+                             $p[$i]['boton_verificado']='<a href='."{{route('producto.precio',$producto_buscar->id)}}".' class="btn btn-info"><span class="glyphicon glyphicon-ok"></span></a>';
+                        }else{
+                            $p[$i]['boton_verificado']='';
+                        }
+                       
+                    }
+                     $i++;
+                 }
             }
 
         }
@@ -161,20 +210,28 @@ class PrecioController extends Controller
                 $producto_buscar=$precios->where('comercio_id',$comercio)->where('producto_id',$producto)->last();
 
                 if(!empty($producto_buscar)){
-                    $p[$i]=$producto_buscar->id;
-                    $i++;
-                }
+
+                      $p[$i]=Precio::with('comercio','producto')->where('id',$producto_buscar->id)->get()->first();
+                   
+                    if(in_array($producto_buscar->id, $precios_verificados)){
+                        $p[$i]['boton_verificado']='';
+                    }else{
+                        if(Auth::check()){
+                             $p[$i]['boton_verificado']='<a href='."{{route('producto.precio',$producto_buscar->id)}}".' class="btn btn-info"><span class="glyphicon glyphicon-ok"></span></a>';
+                        }else{
+                            $p[$i]['boton_verificado']='';
+                        }
+                       
+                    }
+                     $i++;
+                 }
             }
 
 
 
         }
 
-
-        
-
-        
-        $precios= Precio::with('comercio','producto')->whereIn('id',$p)->orderBy('valor','desc')->get();
+        $precios=$p;
    
 
         return $precios;
@@ -183,6 +240,15 @@ class PrecioController extends Controller
 
 
     public function filtraCategoria($categoria){
+
+
+        $precios_verificados=[];
+        if(Auth::check()){
+            $user=Auth::user();
+            $precios_verificados=$user->precios_verificados->lists('precio_id')->toArray();
+
+        }
+
 
         if($categoria==0){
             $categorias=Categoria::all();
@@ -221,16 +287,30 @@ class PrecioController extends Controller
             
                 $producto_buscar=$precios->where('comercio_id',$comercio)->where('producto_id',$producto)->last();
 
-                if(!empty($producto_buscar)){
-                    $p[$i]=$producto_buscar->id;
-                    $i++;
-                }
+                 if(!empty($producto_buscar)){
+
+                      $p[$i]=Precio::with('comercio','producto')->where('id',$producto_buscar->id)->get()->first();
+                   
+                    if(in_array($producto_buscar->id, $precios_verificados)){
+                        $p[$i]['boton_verificado']='';
+                    }else{
+
+                        if(Auth::check()){
+                             $p[$i]['boton_verificado']='<a href='."{{route('producto.precio',$producto_buscar->id)}}".' class="btn btn-info"><span class="glyphicon glyphicon-ok"></span></a>';
+                        }else{
+                            $p[$i]['boton_verificado']='';
+                        }
+                       
+                    }
+                     $i++;
+                 }
             }
 
         }
 
-       $precios= Precio::with('comercio','producto')->whereIn('id',$p)->orderBy('valor','desc')->get();
+      //$precios= Precio::with('comercio','producto')->whereIn('id',$p)->orderBy('valor','desc')->get();
    
+        $precios=$p;
 
         return $precios;
 
