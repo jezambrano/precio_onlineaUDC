@@ -6,10 +6,18 @@
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">Register</div>
+				<h3> </h3>
 				<div class="panel-body">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
+							<strong>Atencion!</strong> La contrase&ntildea debe contener al menos: 
+							<ul>
+								<li>1 digito</li>
+								<li>1 letra Mayuscula</li>
+								<li>1 letra minuscula</li>
+								<li>8 caracteres como minimo</li>
+							</ul>
+							<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>

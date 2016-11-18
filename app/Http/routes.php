@@ -21,7 +21,7 @@ Route::get('/', ['uses' => 'HomeController@index', 'as' => 'inicio']
 // Authentication routes...
 Route::get('login', ['uses' => 'Auth\AuthController@getLogin', 'as' => 'login']);
 Route::post('login', ['uses' => 'Auth\AuthController@postLogin', 'as' => 'login']);
-Route::get('logout', ['uses' => 'Auth\AuthController@getLogout', 'as' => 'logout']);
+Route::get('logout', ['uses' => 'Auth\AuthController@logout', 'as' => 'logout']);
 
 // Registration routes...
 Route::get('register', ['uses' => 'Auth\AuthController@getRegister', 'as' => 'register']);
