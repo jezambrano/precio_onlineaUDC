@@ -1,5 +1,6 @@
 @extends('template.layout')
 @section('title',"Agregar Precio")
+@include('template.errors')
 @section('content')
 
 	@if(isset($producto))
