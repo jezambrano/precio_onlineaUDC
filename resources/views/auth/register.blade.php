@@ -16,6 +16,7 @@
 								<li>1 letra Mayuscula</li>
 								<li>1 letra minuscula</li>
 								<li>8 caracteres como minimo</li>
+								<li>15 caracteres como maximo</li>
 							</ul>
 							<br><br>
 							<ul>
