@@ -58,22 +58,22 @@ class PresentacionController extends Controller
     public function store(Request $request)
     {
 
-        $reglas=[   'nombre' => 'unique:presentaciones_productos,nombre|required|regex: [^.*(?=.*[a-zA-ZñÑ\t\s]).*$]|between:3,20',
+        $reglas=[   'nombre' => 'unique:presentaciones_productos,nombre|required|regex: /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]+$/ |between:3,50',
                     'tipo_producto_id' => 'exists:tipos_productos,id|required'
                 ];
-        $mensajes[
 
+        $mensajes=[
                     'nombre.unique' => 'el nombre ya esta ocupado',
                     'nombre.max' => 'el nombre no puede exeder a los 50 caracteres',
                     'tipo_producto_id.exists' => 'el tipo de producto seleccionado no esta registrado',
                     'tipo_producto_id.required' => 'el tipo de producto es necesario'
         ];
 
-        $v=/Validator::make($request->toArray(),$reglas,$mensajes);
+        $v= \Validator::make($request->toArray(),$reglas,$mensajes);
 
         if ($v->fails()) {
            
-            return redirect()->route('presentacion.index')->withErrors($v);
+            return redirect()->back()->withErrors($v);
 
         }
 
@@ -125,10 +125,10 @@ class PresentacionController extends Controller
 
 
 
-         $reglas=[   'nombre' => 'unique:presentaciones_productos,nombre,'.$presentacion->id.'|required|regex: [^.*(?=.*[a-zA-ZñÑ\t\s]).*$]|between:3,20',
+         $reglas=[   'nombre' => 'unique:presentaciones_productos,nombre,'.$presentacion->id.'|required|regex: /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_\s]+$/ |between:3,50',
                     'tipo_producto_id' => 'exists:tipos_productos,id|required'
                 ];
-        $mensajes[
+        $mensajes=[
 
                     'nombre.unique' => 'el nombre ya esta ocupado',
                     'nombre.max' => 'el nombre no puede exeder a los 50 caracteres',
@@ -136,11 +136,11 @@ class PresentacionController extends Controller
                     'tipo_producto_id.required' => 'el tipo de producto es necesario'
         ];
 
-        $v=/Validator::make($request->toArray(),$reglas,$mensajes);
+        $v=\Validator::make($request->toArray(),$reglas,$mensajes);
 
         if ($v->fails()) {
            
-            return redirect()->route('presentacion.index')->withErrors($v);
+            return redirect()->back()->withErrors($v);
 
         }
 
