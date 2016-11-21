@@ -1,5 +1,7 @@
 @extends('template.layout')
 @section('title',"Bienvenida")
+
+@include('template.errores')
 @section('content')
 
 <div>

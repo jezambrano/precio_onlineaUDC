@@ -1,21 +1,39 @@
+<div id="mensajes" >
+
+
 @if(Session::has('flash_message'))
-    <div class="alert bg-danger">
+    <div class="alert bg-info" >
        <h4> {{ Session::get('flash_message') }}</h4>
     </div>
 @endif
 
 @if($errors->any())
 
-    	<div class="alert alert-warning alert-dismissible" role="alert">
-  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  			<strong>Aviso!</strong> por favor revise los siguientes idem:
-		</div>
+      <div class="alert alert-warning alert-dismissible" role="alert"  >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Aviso!</strong> por favor revise los siguientes idem:
+    </div>
     <div class="alert alert-danger" role="alert">
-	   <ul>
+     <ul>
             @foreach($errors->all() as $error)
-    			   <li>{{$error}}</li>
+             <li>{{$error}}</li>
             @endforeach
         </ul>
     </div>
 @endif
 
+  
+</div>
+
+<script type="text/javascript">
+  
+  $(function() {
+
+      $('#mensajes').fadeIn(5000);
+      $('#mensajes').fadeOut(5000);
+
+
+  });
+
+
+</script>

@@ -95,6 +95,8 @@
 
      $(document).ready(function() {
 
+      
+
     
 
         $('#producto').on('change', function(e){

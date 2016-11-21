@@ -67,6 +67,8 @@ class Precio extends Model
       return date("d-m-Y",strtotime($value));
       
     }
+
+    /*
     public function DesviacionEstandar(array $a ,bool $sample = false )
     {
         //calculo la desviacion
@@ -105,4 +107,7 @@ class Precio extends Model
 
         return $valores;
     }
+
+
+    */
 }

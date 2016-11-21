@@ -1,4 +1,5 @@
 @extends('template.layout')
+@include('template.modal_Confirm')
 @section('title',"Presentacion Index")
 @section('content')
     <a href="{{ route('presentacion.create') }}" class="btn btn-success">
@@ -10,7 +11,7 @@
     <div class="form-group">
         <h1>Listado de Presentaciones </h1>
         <br/>
-        <table class="table table-bordered">
+        <table class="table table-bordered" data-toggle="dataTable" data-form="deleteForm">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -48,4 +49,34 @@
     </div>
     @endif  
          
+@endsection
+
+
+
+
+@section('script')
+
+<script type="text/javascript">
+  
+ $(function() {
+     $('#mensajes').fadeIn(5000);
+      $('#mensajes').fadeOut(5000);
+  
+
+     $('table[data-form="deleteForm"]').on('click', '.form-delete', function(e){
+
+
+                e.preventDefault();
+                var $form=$(this);
+                $('#confirm').modal({ backdrop: 'static', keyboard: false })
+                .on('click', '#delete-btn', function(){
+                        $form.submit();
+                });
+            });
+
+ });
+
+
+</script>
+
 @endsection

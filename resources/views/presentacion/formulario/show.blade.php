@@ -25,7 +25,7 @@
 					<td>{{ $producto->descripcion }}</td>
 					<td>{{ $producto->precio }}</td>
 					<td>{{ $producto->codigo_barra }}</td>
-					<td><button class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="Quitar el producto de esta presentacion"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+					<td><a class="btn btn-danger" href="{{route('presentacion.quitar.producto',[$presentacion->id,$producto->id])}}" data-toggle="tooltip" data-placement="right" title="Quitar el producto de esta presentacion"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span></a></td>
 				</tr>
 			@endforeach
 		 	</tbody>

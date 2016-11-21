@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Presentacion_Producto as Presentacion;
 use App\Tipo_Producto as Tipo;
+use App\Producto;
 class PresentacionController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class PresentacionController extends Controller
      */
     public function index()
     {
-        $presentaciones = Presentacion::paginate(10);//->load('tipo_producto', 'productos'));
+        $presentaciones = Presentacion::where('esta_activo',true)->paginate(10);//->load('tipo_producto', 'productos'));
         return view('presentacion.index',compact('presentaciones'));
 
     }
@@ -38,9 +39,26 @@ class PresentacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+    public function quitar_producto($presentacion_id,$producto_id)
+    {
+        $producto=Producto::find($producto_id);
+        $presentacion=Presentacion::find($presentacion_id);
+        //  $producto->where('presentacion_producto_id',$presentacion->id)->get()->first()->presentacion_producto_id=null;
+
+        $producto->presentacion_producto()->dissociate($presentacion);
+        $producto->save();
+
+     return redirect()->route('presentacion.index');
+
+    }
     public function store(Request $request)
     {
-        //
+          Presentacion::create($request->all());
+
+            \Session::flash('flash_message','Se creo con exito!! De toque Perrooo');
+            return redirect()->route('presentacion.index');
     }
 
     /**
@@ -77,9 +95,13 @@ class PresentacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Presentacion $presentacion)
     {
-        //
+        $presentacion->update($request->all());
+
+
+            \Session::flash('flash_message','Se Actualizo '.$presentacion->nombre.' con exito!! De toque Perrooo');
+            return redirect()->route('presentacion.index');
     }
 
     /**
@@ -88,8 +110,12 @@ class PresentacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Presentacion $presentacion)
     {
-        //
+        $presentacion->esta_activo=false;
+        $presentacion->save();
+
+         \Session::flash('flash_message','Se dio de baja '.$presentacion->nombre.' con exito!!');
+        return redirect()->route('presentacion.index');
     }
 }

@@ -17,6 +17,10 @@ class CreatePresentacionesProductosTable extends Migration
                 ->increments('id');
             $table
                 ->string('nombre');
+
+            $table
+                ->boolean('esta_activo')
+                ->default(true);
             //llave a tipo
             $table
                  ->integer('tipo_producto_id')

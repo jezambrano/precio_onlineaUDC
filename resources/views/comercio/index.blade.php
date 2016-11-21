@@ -73,6 +73,8 @@
             </table>
 
         </div>
+
+        {{ $comercios->render() }}
 	@endif  
 
 @endsection
