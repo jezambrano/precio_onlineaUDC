@@ -11,6 +11,7 @@ use App\Comercio;
 use App\Precio;
 use App\Categoria_Producto as Categoria;
 use App\Presentacion_Producto as Presentacion;
+use App\Precio_Verificado;
 use Auth;
 
 
@@ -140,20 +141,29 @@ class PrecioController extends Controller
         }
 
 
-
           //traigo todos los producto
-        $productos= Producto::activos()->get()->lists('id');
+        $producto= Producto::find($request->producto_id);
+
+        $precios_verificados=$producto->precios->lists('id');
+
+
+       // $precio_a_buscar=$producto->precios->lists('id');
+
         //traer todos los precios de un producto
-        $precios= Precio::whereIn(('verificado' , '= ' , 1 ) $productos->toArray() )->get();
+      //  $precios_verificados=Precio_Verificado::where('precio_id',$precio_a_buscar->toArray() )->get();
+      //  $precios_verificados=array_unique($precios_verificados->lists('precio_id')->toArray() );
+
+        $precios= Precio::where('producto_id' ,$producto->id)->whereIn('id' , $precios_verificados )->get();
         //llamar a la funcion 
+        $verificar=array();
         $verificar = Precio::DesviacionEstandar($precios);
 
 
         //hacer la comprobacion para ver si es correcto de los contrario devolver con error
-        if (!(verificar["minimo"] < $request->input("valor"))&&(verificar["maximo"] > $request->input("valor")) {
+        if (    !  ( ( $verificar["minimo"] < $request->input("valor") ) && ($verificar["maximo"] > $request->input("valor") ) ) ){
             
-            \Session::flash("flash_message", "Precio del producto no es valido");
-            return redirect()->back();
+           // \Session::flash("flash_message", "Precio del producto no es valido");
+            return redirect()->back()->withErrors(['errors' => 'Precio del producto no es valido']);
         
         }
    
@@ -175,7 +185,7 @@ class PrecioController extends Controller
     {
        
     }
-
+/*
    
     public function update(Request $request, $id)
     {
@@ -184,13 +194,13 @@ class PrecioController extends Controller
         $precio=Precio::find($id);
         $productos= Producto::activos()->get()->lists('id');
         //traer todos los precios de un producto
-        $precios= Precio::whereIn(('verificado' , '= ' , 1 ) $productos->toArray() )->get();
+         $precios= Precio::whereIn(('verificado' , '= ' , 1 ) $productos->toArray() )->get();
         //llamar a la funcion 
         $verificar = Precio::DesviacionEstandar($precios);
 
 
         //hacer la comprobacion para ver si es correcto de los contrario devolver con error
-        if ((verificar["minimo"] < $request->input("valor"))&&(verificar["maximo"] > $request->input("valor")) {
+        if (($verificar["minimo"] < $request->input("valor"))&&($verificar["maximo"] > $request->input("valor")) {
             Precio::update(   $request->all()  );
             return redirect('precio');
         }  else {
@@ -203,7 +213,7 @@ class PrecioController extends Controller
 
 
     }
-
+*/
    
     public function destroy($id)
     {
