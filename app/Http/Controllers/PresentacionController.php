@@ -40,7 +40,7 @@ class PresentacionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
+/*
     public function quitar_producto($presentacion_id,$producto_id)
     {
         $producto=Producto::find($producto_id);
@@ -53,8 +53,33 @@ class PresentacionController extends Controller
      return redirect()->route('presentacion.index');
 
     }
+
+*/
     public function store(Request $request)
     {
+
+        $reglas=[   'nombre' => 'unique:presentaciones_productos,nombre|required|regex: [^.*(?=.*[a-zA-ZñÑ\t\s]).*$]|between:3,20',
+                    'tipo_producto_id' => 'exists:tipos_productos,id|required'
+                ];
+        $mensajes[
+
+                    'nombre.unique' => 'el nombre ya esta ocupado',
+                    'nombre.max' => 'el nombre no puede exeder a los 50 caracteres',
+                    'tipo_producto_id.exists' => 'el tipo de producto seleccionado no esta registrado',
+                    'tipo_producto_id.required' => 'el tipo de producto es necesario'
+        ];
+
+        $v=/Validator::make($request->toArray(),$reglas,$mensajes);
+
+        if ($v->fails()) {
+           
+            return redirect()->route('presentacion.index')->withErrors($v);
+
+        }
+
+
+
+
           Presentacion::create($request->all());
 
             \Session::flash('flash_message','Se creo con exito!! De toque Perrooo');
@@ -97,6 +122,29 @@ class PresentacionController extends Controller
      */
     public function update(Request $request,Presentacion $presentacion)
     {
+
+
+
+         $reglas=[   'nombre' => 'unique:presentaciones_productos,nombre,'.$presentacion->id.'|required|regex: [^.*(?=.*[a-zA-ZñÑ\t\s]).*$]|between:3,20',
+                    'tipo_producto_id' => 'exists:tipos_productos,id|required'
+                ];
+        $mensajes[
+
+                    'nombre.unique' => 'el nombre ya esta ocupado',
+                    'nombre.max' => 'el nombre no puede exeder a los 50 caracteres',
+                    'tipo_producto_id.exists' => 'el tipo de producto seleccionado no esta registrado',
+                    'tipo_producto_id.required' => 'el tipo de producto es necesario'
+        ];
+
+        $v=/Validator::make($request->toArray(),$reglas,$mensajes);
+
+        if ($v->fails()) {
+           
+            return redirect()->route('presentacion.index')->withErrors($v);
+
+        }
+
+
         $presentacion->update($request->all());
 
 
