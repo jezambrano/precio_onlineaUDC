@@ -43,6 +43,16 @@
 
 
 
+                           <li class="dropdown">
+                            <a href="comercio" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categoria <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('categoria.index') }}">Ver Todos</a></li>
+                                <li><a href="{{ route('categoria.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nueva</a></li>
+                            </ul>
+                        </li>
+
+
+
                         <li class="dropdown">
                             <a href="producto" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Producto <span class="caret"></span></a>
                             <ul class="dropdown-menu">
