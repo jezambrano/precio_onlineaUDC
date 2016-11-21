@@ -38,7 +38,9 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255|unique:users',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:8|confirmed',
+            'password' => 'required|min:8|max:15|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d$@$!%*?&]/',
+
+            ///^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/
         ]);
     }
 
