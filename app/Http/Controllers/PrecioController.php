@@ -140,7 +140,26 @@ class PrecioController extends Controller
         }
 
 
+
+          //traigo todos los producto
+        $productos= Producto::activos()->get()->lists('id');
+        //traer todos los precios de un producto
+        $precios= Precio::whereIn(('verificado' , '= ' , 1 ) $productos->toArray() )->get();
+        //llamar a la funcion 
+        $verificar = Precio::DesviacionEstandar($precios);
+
+
+        //hacer la comprobacion para ver si es correcto de los contrario devolver con error
+        if (!(verificar["minimo"] < $request->input("valor"))&&(verificar["maximo"] > $request->input("valor")) {
+            
+            \Session::flash("flash_message", "Precio del producto no es valido");
+            return redirect()->back();
+        
+        }
+   
+
         Precio::create(   $request->all()  );
+
 
         return redirect('precio');
     }
@@ -160,7 +179,29 @@ class PrecioController extends Controller
    
     public function update(Request $request, $id)
     {
-       
+        
+
+        $precio=Precio::find($id);
+        $productos= Producto::activos()->get()->lists('id');
+        //traer todos los precios de un producto
+        $precios= Precio::whereIn(('verificado' , '= ' , 1 ) $productos->toArray() )->get();
+        //llamar a la funcion 
+        $verificar = Precio::DesviacionEstandar($precios);
+
+
+        //hacer la comprobacion para ver si es correcto de los contrario devolver con error
+        if ((verificar["minimo"] < $request->input("valor"))&&(verificar["maximo"] > $request->input("valor")) {
+            Precio::update(   $request->all()  );
+            return redirect('precio');
+        }  else {
+            \Session::flash("flash_message", "Precio del producto no es valido");
+            return Redirect::to()->route("precio.edit");
+        
+        }
+        
+
+
+
     }
 
    

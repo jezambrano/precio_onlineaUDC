@@ -68,26 +68,27 @@ class Precio extends Model
       
     }
 
-    /*
-    public function DesviacionEstandar(array $a ,bool $sample = false )
+    public function DesviacionEstandar(array $a)
+
     {
-        //calculo la desviacion
-        $desviacion = stats_standard_deviation($a);
+        if(count($a >= 3)){
         //arreglo para las variables de desviacion 
         $valoresd = [];
         //arreglo para las variavles con porcentaje
         $valoresp = [];
+        //calculo la desviacion
+        $desviacion = stats_standard_deviation($a);
         //promedio del arreglo
         $promedio = array_sum($a)/count($a);
         
         //maximo con desviacion
-        $max = $promedio+$desviacion*1.2;
+        $dmax = $promedio+$desviacion*1.2;
         //agrego a arreglo de desviacion
-        $valoresd["maximo"]= $max;
+        $valoresd["maximo"]= $dmax;
         //minimo con desviacion
-        $min = $promedio-$desviacion*1.2;
+        $dmin = $promedio-$desviacion*1.2;
         //agrego a arreglo de desviacion
-        $valoresd["minimo"] = $min;
+        $valoresd["minimo"] = $dmin;
 
         //calculo el 10% del arreglo
         $porcentaje = array_sum($a)*10/100;
@@ -95,19 +96,23 @@ class Precio extends Model
         //calculo maximo y minimo del promedio con porcentaje
         $pmax = $promedio+$porcentaje;
         $pmin = $promedio-$porcentaje;
+        //agrego al arreglo de promedio
         $valoresp["maximo"] = $pmax;
         $valoresp["minimo"] = $pmin;
 
-        if ($pmax > $max && $pmin > $min) {
-
-
-            # code...
+        if ($pmax > $dmax && $pmin < $dmin) {
+            return $valoresp;
+        } else {
+            return $valoresd;
         }
 
-
+    } else {
+        $valores[];
+        $valores["min"] = 0 ;
+        $valores["max"] = 0 ;
         return $valores;
     }
 
 
-    */
+    
 }
