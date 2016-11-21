@@ -1,6 +1,6 @@
 
 @extends('template.layout')
-@section('title',"Ver Presenacion")
+@section('title',"Ver Presentacion")
 @section('content')
 
     <h2>{{ $presentacion->nombre }}</h2>
@@ -19,7 +19,7 @@
                 </tr>
             </thead>
             <tbody>
-			@foreach($presentacion->productos as $producto)
+			@foreach($presentacion->productos()->get() as $producto)
 				<tr>
 					<td>{{ $producto->nombre }}</td>
 					<td>{{ $producto->descripcion }}</td>

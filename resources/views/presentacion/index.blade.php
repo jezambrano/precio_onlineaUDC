@@ -16,7 +16,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Nombre</th>
-                    <th colspan="3">acciones</th>
+                    <th colspan="4">acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +34,13 @@
         		        	<span class="glyphicon glyphicon-pencil"></span>
         		        </a>
                     </td>
+                    <td>
+                        <a href='{{route('presentacion.asignar.producto',$presentacion->id)}}' class="btn btn-info">
+                            <span class="glyphicon glyphicon-plus">producto</span>
+                        </a>
+                    </td>
+
+
                     <td>
                 
                         {{ Form::model($presentacion, ["method" => "delete", "route" => ["presentacion.destroy", $presentacion->id], "class" =>"form-inline form-delete"]) }}

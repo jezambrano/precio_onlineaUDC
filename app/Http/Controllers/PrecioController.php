@@ -111,6 +111,35 @@ class PrecioController extends Controller
     public function store(Request $request)
     {
 
+           $v= \Validator::make($request->toArray(),[
+
+            'valor' => 'required|Between:1,100000|min:1|max:10000',
+            'comercio_id' => 'required|exists:comercios,id',
+            'producto_id' => 'required|exists:productos,id'
+
+            ],[
+            'valor.required' => 'el producto es necesario',
+            'valor.exists' => 'el producto ingresado no esta registrado ',
+             'producto_id.required' => 'el producto es necesario',
+            'producto_id.exists' => 'el producto ingresado no esta registrado ',
+             'comercio_id.required' => 'el Comercio es necesario',
+            'comercio_id.exists' => 'el comercio ingresado no esta registrado '
+
+            ]);
+
+
+
+        if ($v->fails()) {
+           
+            return redirect()->back()->withErrors($v);
+
+        }
+
+        if($request->valor< 0 || $request->valor > 100000000 ){
+               return redirect()->back()->withErrors(['errors' => 'el valor de precio debe se positivo y no puede superar 100000000']);
+        }
+
+
         Precio::create(   $request->all()  );
 
         return redirect('precio');

@@ -22,7 +22,7 @@ class Presentacion_Producto extends Model
 
     public function productos()
     {
-    	return $this->hasMany('App\Producto','id','tipo_producto_id');
+    	return $this->hasMany('App\Producto','presentacion_producto_id','id');
     } 
 
 }

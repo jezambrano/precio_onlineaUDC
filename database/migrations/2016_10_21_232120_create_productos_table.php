@@ -33,7 +33,9 @@ class CreateProductosTable extends Migration
              //llave a tipo
             $table
                  ->integer('presentacion_producto_id')
-                 ->unsigned();
+                 ->unsigned()
+                 ->nullable()
+                 ->default(null);
 
             $table
                 ->foreign('presentacion_producto_id')

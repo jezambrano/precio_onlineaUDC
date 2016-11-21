@@ -68,5 +68,8 @@ Route::get('producto/data/{producto}',function($producto=null)
 Route::resource('precio','PrecioController');
 
 
+Route::get('presentacion/{presentacion}/asignar/producto','PresentacionController@asignar_producto')->name('presentacion.asignar.producto');
+Route::post('presentacion/{presentacion}/asignar/producto','PresentacionController@asignar_producto_store')->name('presentacion.asignar.producto.store');
+
 Route::get('quitar/{presentacion}/{producto}','PresentacionController@quitar_producto')->name('presentacion.quitar.producto');
 Route::resource('presentacion','PresentacionController');

@@ -40,21 +40,59 @@ class PresentacionController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-/*
+
     public function quitar_producto($presentacion_id,$producto_id)
     {
         $producto=Producto::find($producto_id);
+
+
         $presentacion=Presentacion::find($presentacion_id);
-        //  $producto->where('presentacion_producto_id',$presentacion->id)->get()->first()->presentacion_producto_id=null;
+        $producto->presentacion_producto_id=null;
 
-        $producto->presentacion_producto()->dissociate($presentacion);
+     //   $producto->presentacion_producto()->dissociate($presentacion);
         $producto->save();
+      
 
-     return redirect()->route('presentacion.index');
+        return redirect()->route('presentacion.index');
 
     }
 
-*/
+
+    public function asignar_producto(Presentacion $presentacion)
+    {
+       
+        $productos=Producto::where('presentacion_producto_id',null)->get()->lists('nombre','id');
+       return view('presentacion.asignar.producto',compact('presentacion','productos'));
+    }
+
+
+    public function asignar_producto_store($presentacion,Request $request)
+    {
+
+         $v= \Validator::make($request->toArray(),[
+
+            'producto_id' => 'required|exists:productos,id'
+
+            ],[
+            'producto_id.required' => 'el producto es necesario',
+            'producto_id.exists' => 'el producto ingresado no esta registrado '
+
+            ]);
+
+        if ($v->fails()) {
+           
+            return redirect()->back()->withErrors($v);
+
+        }
+
+
+        $p=Producto::find($request->producto_id);
+        $p->presentacion_producto_id=$presentacion;
+        $p->save();
+
+        return redirect()->route('presentacion.index');
+    }
+
     public function store(Request $request)
     {
 
@@ -94,7 +132,8 @@ class PresentacionController extends Controller
      */
     public function show($id)
     {
-        $presentacion = Presentacion::first()->load('tipo_producto', 'productos');
+        $presentacion = Presentacion::find($id);
+        //->load('tipo_producto', 'productos');
         $ver=true;
         return view('presentacion.formulario.show', compact('presentacion', 'ver'));
     }

@@ -19,7 +19,7 @@ class Producto extends Model
 
 	public function presentacion_producto()
     {
-    	return $this->belongsTo('App\Presentacion_Producto');
+    	return $this->belongsTo('App\Presentacion_Producto','id','presentacion_producto_id');
     }
 
     public function precios()
